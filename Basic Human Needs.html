@@ -1,0 +1,3574 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Learning Platform - Maslow's Hierarchy of Human Needs</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        /* CSS Variables - Color System */
+        :root {
+            --font-ar: 'Cairo', sans-serif;
+            --font-en: 'Roboto', sans-serif;
+            --primary: #6366F1;
+            --primary-dark: #4F46E5;
+            --primary-light: #818CF8;
+            --secondary: #10B981;
+            --secondary-dark: #059669;
+            --accent: #F59E0B;
+            --accent-dark: #D97706;
+            --danger: #EF4444;
+            --success: #10B981;
+            --bg: #FFFFFF;
+            --bg-secondary: #F8FAFC;
+            --bg-tertiary: #F1F5F9;
+            --bg-card: #FFFFFF;
+            --text: #0F172A;
+            --text-secondary: #334155;
+            --text-light: #475569;
+            --border: #E2E8F0;
+            --border-light: #F1F5F9;
+            --border-dark: #CBD5E1;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 6px 10px -1px rgba(0, 0, 0, 0.1), 0 4px 6px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            --radius-sm: 0.375rem;
+            --radius-md: 0.5rem;
+            --radius-lg: 0.75rem;
+            --radius-xl: 1rem;
+            --radius-2xl: 1.5rem;
+            --radius-full: 9999px;
+            --transition-fast: 150ms;
+            --transition-base: 300ms;
+            --transition-slow: 500ms;
+            --transition-all: all 0.3s ease;
+        }
+
+        /* Dark Mode Variables */
+        body.dark-mode {
+            --bg: #0F172A;
+            --bg-secondary: #1E293B;
+            --bg-tertiary: #334155;
+            --bg-card: #1E293B;
+            --text: #F1F5F9;
+            --text-secondary: #E2E8F0;
+            --text-light: #CBD5E1;
+            --border: #334155;
+            --border-light: #475569;
+            --border-dark: #1E293B;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 6px 10px -1px rgba(0, 0, 0, 0.5), 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.6), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.7), 0 10px 10px -5px rgba(0, 0, 0, 0.3);
+            --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+        }
+
+        /* Base Styles */
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+        }
+
+        *::before, *::after { 
+            box-sizing: border-box; 
+        }
+
+        html { 
+            scroll-behavior: smooth; 
+            font-size: 16px; 
+            -webkit-font-smoothing: antialiased; 
+            -moz-osx-font-smoothing: grayscale; 
+        }
+
+        body { 
+            font-family: var(--font-en); 
+            font-weight: 600; 
+            font-size: 1.125rem; 
+            line-height: 1.8; 
+            color: var(--text); 
+            background: var(--bg); 
+            transition: background-color var(--transition-base) ease, color var(--transition-base) ease; 
+            overflow-x: hidden; 
+            min-height: 100vh; 
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 { 
+            font-weight: 800; 
+            line-height: 1.4; 
+            margin-bottom: 1rem; 
+            word-wrap: break-word; 
+            overflow-wrap: break-word; 
+            hyphens: auto; 
+            color: var(--text); 
+        }
+
+        h1 { 
+            font-size: 3rem; 
+            color: var(--primary); 
+            margin-bottom: 2rem; 
+            text-align: center; 
+        }
+
+        h2 { 
+            font-size: 2.5rem; 
+            color: var(--secondary); 
+            margin-bottom: 1.5rem; 
+        }
+
+        h3 { 
+            font-size: 2rem; 
+            color: var(--accent); 
+            margin-bottom: 1.25rem; 
+        }
+
+        h4 { 
+            font-size: 1.5rem; 
+            color: var(--text-secondary); 
+            margin-bottom: 1rem; 
+        }
+
+        h5 { 
+            font-size: 1.25rem; 
+            margin-bottom: 0.75rem; 
+        }
+
+        h6 { 
+            font-size: 1.125rem; 
+            margin-bottom: 0.75rem; 
+        }
+
+        p { 
+            margin-bottom: 1rem; 
+            word-wrap: break-word; 
+            overflow-wrap: break-word; 
+            line-height: 1.8; 
+        }
+
+        strong { 
+            font-weight: 900; 
+            color: var(--text); 
+        }
+
+        em { 
+            font-style: italic; 
+            color: var(--text-secondary); 
+        }
+
+        a { 
+            color: var(--primary); 
+            text-decoration: none; 
+            transition: var(--transition-all); 
+        }
+
+        a:hover { 
+            color: var(--primary-dark); 
+            text-decoration: underline; 
+        }
+
+        a:focus { 
+            outline: 2px solid var(--primary); 
+            outline-offset: 2px; 
+        }
+
+        ul, ol { 
+            margin: 1rem 0; 
+            padding-left: 1.5rem; 
+            line-height: 1.8; 
+        }
+
+        li { 
+            margin-bottom: 0.5rem; 
+            word-wrap: break-word; 
+        }
+
+        button { 
+            font-family: var(--font-en); 
+            cursor: pointer; 
+            border: none; 
+            outline: none; 
+            transition: var(--transition-all); 
+            font-weight: 700; 
+        }
+
+        button:hover { 
+            transform: translateY(-2px); 
+        }
+
+        button:active { 
+            transform: translateY(0); 
+        }
+
+        button:disabled { 
+            opacity: 0.5; 
+            cursor: not-allowed; 
+        }
+
+        /* Highlight Styles */
+        .highlight { 
+            padding: 0.2rem 0.6rem; 
+            border-radius: 1.2rem; 
+            font-weight: 800; 
+            transition: var(--transition-all); 
+            display: inline-block; 
+            line-height: 1.6; 
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); 
+            position: relative; 
+        }
+
+        .highlight-1 { 
+            background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%); 
+            color: #92400E; 
+            border: 1px solid #F59E0B; 
+        }
+
+        .highlight-2 { 
+            background: linear-gradient(135deg, #DBEAFE 0%, #BFDBFE 100%); 
+            color: #1E40AF; 
+            border: 1px solid #3B82F6; 
+        }
+
+        .highlight-3 { 
+            background: linear-gradient(135deg, #D1FAE5 0%, #A7F3D0 100%); 
+            color: #065F46; 
+            border: 1px solid #10B981; 
+        }
+
+        .highlight-4 { 
+            background: linear-gradient(135deg, #FCE7F3 0%, #FBCFE8 100%); 
+            color: #9F1239; 
+            border: 1px solid #EC4899; 
+        }
+
+        .highlight-5 { 
+            background: linear-gradient(135deg, #E0E7FF 0%, #C7D2FE 100%); 
+            color: #5B21B6; 
+            border: 1px solid #8B5CF6; 
+        }
+
+        .highlight-blood { 
+            background: linear-gradient(135deg, #FEE2E2 0%, #FECACA 100%); 
+            color: #991B1B; 
+            border: 1px solid #EF4444; 
+        }
+
+        .highlight-urine { 
+            background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%); 
+            color: #92400E; 
+            border: 1px solid #F59E0B; 
+        }
+
+        .highlight-blue { 
+            background: linear-gradient(135deg, #DBEAFE 0%, #BFDBFE 100%); 
+            color: #1E40AF; 
+            border: 1px solid #3B82F6; 
+        }
+
+        .highlight-green { 
+            background: linear-gradient(135deg, #D1FAE5 0%, #A7F3D0 100%); 
+            color: #065F46; 
+            border: 1px solid #10B981; 
+        }
+
+        .highlight-pink { 
+            background: linear-gradient(135deg, #FCE7F3 0%, #FBCFE8 100%); 
+            color: #9F1239; 
+            border: 1px solid #EC4899; 
+        }
+
+        .highlight-purple { 
+            background: linear-gradient(135deg, #E0E7FF 0%, #C7D2FE 100%); 
+            color: #5B21B6; 
+            border: 1px solid #8B5CF6; 
+        }
+
+        .highlight:hover { 
+            transform: scale(1.05); 
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); 
+        }
+
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar { 
+            width: 12px; 
+            height: 12px; 
+        }
+
+        ::-webkit-scrollbar-track { 
+            background: var(--bg-secondary); 
+        }
+
+        ::-webkit-scrollbar-thumb { 
+            background: var(--border-dark); 
+            border-radius: var(--radius-full); 
+        }
+
+        ::-webkit-scrollbar-thumb:hover { 
+            background: var(--primary); 
+        }
+
+        body.dark-mode ::-webkit-scrollbar-track { 
+            background: var(--bg-tertiary); 
+        }
+
+        body.dark-mode ::-webkit-scrollbar-thumb { 
+            background: var(--border); 
+        }
+
+        /* Header Styles */
+        header { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            right: 0; 
+            width: 100%; 
+            background: rgba(255, 255, 255, 0.95); 
+            backdrop-filter: blur(20px) saturate(180%); 
+            -webkit-backdrop-filter: blur(20px) saturate(180%); 
+            box-shadow: var(--shadow-lg); 
+            z-index: 1000; 
+            transition: transform var(--transition-base) ease; 
+            border-bottom: 2px solid var(--border); 
+        }
+
+        body.dark-mode header { 
+            background: rgba(30, 41, 59, 0.95); 
+        }
+
+        header.collapsed { 
+            transform: translateY(-100%); 
+        }
+
+        .header-container { 
+            max-width: 1600px; 
+            margin: 0 auto; 
+            padding: 0.75rem 1.5rem; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            gap: 1rem; 
+            flex-wrap: wrap; 
+        }
+
+        .logo-section { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 0.3rem; 
+        }
+
+        .site-title { 
+            font-size: 1.25rem; 
+            font-weight: 900; 
+            color: var(--text); 
+            font-family: var(--font-en); 
+            line-height: 1.3; 
+        }
+
+        .developer-name { 
+            font-family: var(--font-en); 
+            font-size: 1rem; 
+            font-weight: 900; 
+            background: linear-gradient(135deg, #FFD700, #FFA500, #FF6B6B); 
+            background-size: 200% auto; 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+            background-clip: text; 
+            animation: gradientShift 3s ease infinite; 
+            filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.5)); 
+        }
+
+        @keyframes gradientShift { 
+            0%, 100% { background-position: 0% 50%; } 
+            50% { background-position: 100% 50%; } 
+        }
+
+        /* Hamburger Menu */
+        .menu-toggle { 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: space-around; 
+            width: 2rem; 
+            height: 2rem; 
+            background: transparent; 
+            border: none; 
+            cursor: pointer; 
+            padding: 0; 
+            z-index: 1002; 
+        }
+
+        .menu-toggle span { 
+            width: 2rem; 
+            height: 3px; 
+            background-color: var(--text); 
+            border-radius: 10px; 
+            transition: var(--transition-all); 
+            transform-origin: 1px; 
+        }
+
+        body.dark-mode .menu-toggle span { 
+            background-color: var(--text); 
+        }
+
+        .menu-toggle.open span:nth-child(1) { 
+            transform: rotate(45deg); 
+        }
+
+        .menu-toggle.open span:nth-child(2) { 
+            opacity: 0; 
+        }
+
+        .menu-toggle.open span:nth-child(3) { 
+            transform: rotate(-45deg); 
+        }
+
+        .nav-container { 
+            position: absolute; 
+            top: 100%; 
+            left: 0; 
+            right: 0; 
+            background: var(--bg); 
+            box-shadow: var(--shadow-lg); 
+            border-top: 1px solid var(--border); 
+            opacity: 0; 
+            visibility: hidden; 
+            transform: translateY(-20px); 
+            transition: var(--transition-all); 
+        }
+
+        body.dark-mode .nav-container { 
+            background: var(--bg-secondary); 
+        }
+
+        .nav-container.open { 
+            opacity: 1; 
+            visibility: visible; 
+            transform: translateY(0); 
+        }
+
+        .main-nav { 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            padding: 1rem 0; 
+        }
+
+        .main-nav a { 
+            padding: 1rem 1.5rem; 
+            font-size: 1.125rem; 
+            font-weight: 800; 
+            color: var(--text-secondary); 
+            text-decoration: none; 
+            border-radius: var(--radius-xl); 
+            transition: var(--transition-all); 
+            width: 100%; 
+            text-align: center; 
+        }
+
+        .main-nav a:hover, .main-nav a.active { 
+            background: var(--primary); 
+            color: white; 
+            transform: translateY(-2px); 
+            box-shadow: var(--shadow); 
+        }
+
+        .header-controls { 
+            display: flex; 
+            align-items: center; 
+            gap: 1rem; 
+        }
+
+        .theme-toggle { 
+            padding: 0.75rem; 
+            font-size: 1.5rem; 
+            background: var(--bg-card); 
+            border-radius: var(--radius-xl); 
+            cursor: pointer; 
+            transition: var(--transition-all); 
+            box-shadow: var(--shadow); 
+        }
+
+        .theme-toggle:hover { 
+            transform: scale(1.1) rotate(20deg); 
+            box-shadow: var(--shadow-lg); 
+        }
+
+        /* Dual Text Row Layout */
+        .dual-text-row { 
+            display: grid; 
+            grid-template-columns: 1fr auto 1fr; 
+            gap: 1.5rem; 
+            align-items: start; 
+            margin: 1.5rem 0; 
+            padding: 1.5rem; 
+            background: var(--bg-card); 
+            border-radius: var(--radius-2xl); 
+            box-shadow: var(--shadow); 
+            overflow: auto; 
+        }
+
+        .english-side { 
+            font-family: var(--font-en); 
+            font-size: 1.125rem; 
+            font-weight: 700; 
+            color: var(--text); 
+            text-align: left; 
+            direction: ltr; 
+            padding: 1rem; 
+            background: var(--bg-secondary); 
+            border-radius: var(--radius-xl); 
+            border-left: 4px solid var(--primary); 
+            grid-column: 1; 
+            word-wrap: break-word; 
+            overflow-wrap: break-word; 
+            line-height: 1.8; 
+        }
+
+        .arrow-separator { 
+            font-size: 2.5rem; 
+            color: var(--accent); 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            grid-column: 2; 
+            align-self: center; 
+        }
+
+        .arrow-separator::before { 
+            content: '→'; 
+        }
+
+        .arabic-side { 
+            font-family: var(--font-ar); 
+            font-size: 1.125rem; 
+            font-weight: 700; 
+            color: var(--text); 
+            text-align: right; 
+            direction: rtl; 
+            padding: 1rem; 
+            background: var(--bg-secondary); 
+            border-radius: var(--radius-xl); 
+            border-right: 4px solid var(--secondary); 
+            grid-column: 3; 
+            word-wrap: break-word; 
+            overflow-wrap: break-word; 
+            line-height: 2; 
+        }
+
+        /* Page Layout */
+        .page { 
+            display: none; 
+            padding: 120px 1rem 2rem; 
+            max-width: 1400px; 
+            margin: 0 auto; 
+            min-height: 100vh; 
+        }
+
+        .page.active-page { 
+            display: block; 
+            animation: fadeInPage 0.5s ease; 
+        }
+
+        @keyframes fadeInPage { 
+            from { opacity: 0; transform: translateY(20px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
+
+        .page h1 { 
+            text-align: center; 
+            margin-bottom: 3rem; 
+            padding-bottom: 1rem; 
+            border-bottom: 4px solid var(--primary); 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+            background-clip: text; 
+        }
+
+        /* Numbered Sections */
+        .numbered-section { 
+            counter-reset: section-counter; 
+        }
+
+        .numbered-item { 
+            position: relative; 
+            margin: 3rem 0; 
+            padding: 2rem; 
+            background: var(--bg-card); 
+            border-radius: var(--radius-2xl); 
+            box-shadow: var(--shadow-xl); 
+            border-left: 5px solid var(--primary); 
+            counter-increment: section-counter; 
+            overflow: auto; 
+        }
+
+        .numbered-item > h2 { 
+            font-size: 2.5rem; 
+            margin-bottom: 1.5rem; 
+            color: var(--primary); 
+            padding-bottom: 1rem; 
+            border-bottom: 3px solid var(--border); 
+        }
+
+        /* Flashcard Styles */
+        .flashcard-section { 
+            max-width: 900px; 
+            margin: 3rem auto; 
+            padding: 1.5rem; 
+        }
+
+        .flashcard { 
+            width: 100%; 
+            max-width: 800px; 
+            height: 400px; 
+            margin: 0 auto 1.5rem; 
+            perspective: 1000px; 
+            cursor: pointer; 
+            display: flex; 
+            align-items: stretch; 
+        }
+
+        .flashcard-inner { 
+            position: relative; 
+            width: 100%; 
+            height: 100%; 
+            transition: transform 0.6s; 
+            transform-style: preserve-3d; 
+        }
+
+        .flashcard.flipped .flashcard-inner { 
+            transform: rotateY(180deg); 
+        }
+
+        .flashcard-front, .flashcard-back { 
+            position: absolute; 
+            width: 100%; 
+            height: 100%; 
+            backface-visibility: hidden; 
+            -webkit-backface-visibility: hidden; 
+            border-radius: var(--radius-2xl); 
+            box-shadow: var(--shadow-xl); 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+            padding: 2rem; 
+            overflow: auto; 
+            white-space: normal; 
+        }
+
+        .flashcard-front { 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+        }
+
+        .flashcard-front h2 { 
+            font-size: clamp(2rem, 5vw, 3rem); 
+            font-weight: 900; 
+            text-align: center; 
+            color: white; 
+            word-break: break-word; 
+        }
+
+        .flashcard-back { 
+            background: var(--bg-card); 
+            border: 3px solid var(--primary); 
+            transform: rotateY(180deg); 
+            padding: 1.5rem; 
+        }
+
+        .flashcard-back h2 { 
+            font-size: 2.5rem; 
+            color: var(--text); 
+            margin-bottom: 1rem; 
+            text-align: center; 
+        }
+
+        .flashcard-back h3 { 
+            font-size: 1.875rem; 
+            color: var(--accent); 
+            margin-bottom: 1.5rem; 
+            text-align: center; 
+        }
+
+        .flashcard-back .dual-text-row { 
+            width: 100%; 
+            font-size: 1rem; 
+            margin-top: 1rem; 
+        }
+
+        .flashcard-counter { 
+            text-align: center; 
+            font-size: 1.5rem; 
+            font-weight: 800; 
+            color: var(--text); 
+            margin-bottom: 1.5rem; 
+        }
+
+        .flashcard-controls-container { 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            padding: 1rem; 
+            background: var(--bg-secondary); 
+            border-radius: var(--radius-2xl); 
+            box-shadow: var(--shadow-md); 
+        }
+
+        .flashcard-controls { 
+            display: flex; 
+            justify-content: center; 
+            gap: 1rem; 
+            flex-wrap: wrap; 
+        }
+
+        .btn-control { 
+            padding: 1rem 1.5rem; 
+            font-size: 1.125rem; 
+            font-weight: 800; 
+            border: none; 
+            border-radius: var(--radius-xl); 
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); 
+            color: white; 
+            cursor: pointer; 
+            transition: var(--transition-all); 
+            box-shadow: var(--shadow); 
+            white-space: nowrap; 
+        }
+
+        .btn-control:hover { 
+            transform: translateY(-3px) scale(1.05); 
+            box-shadow: var(--shadow-lg); 
+        }
+
+        .btn-control:active { 
+            transform: translateY(-1px) scale(1.02); 
+        }
+
+        /* Content Sections */
+        .concept-slide { 
+            max-width: 1400px; 
+            margin: 1.5rem auto; 
+            padding: 1.5rem; 
+        }
+
+        .sub-concept { 
+            margin: 3rem 0; 
+            padding: 1.5rem; 
+            background: var(--bg-secondary); 
+            border-radius: var(--radius-2xl); 
+            border: 2px solid var(--border); 
+            overflow: auto; 
+        }
+
+        .sub-concept h3 { 
+            font-size: 1.875rem; 
+            color: var(--secondary); 
+            margin-bottom: 1.5rem; 
+            padding-left: 1rem; 
+            border-left: 4px solid var(--secondary); 
+        }
+
+        .sub-concept h4 { 
+            font-size: 1.5rem; 
+            color: var(--accent); 
+            margin: 1.5rem 0 1rem; 
+        }
+
+        .professor-explanation { 
+            margin: 1.5rem 0; 
+            padding: 1.5rem; 
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1)); 
+            border-radius: var(--radius-2xl); 
+            border: 2px solid var(--primary); 
+            border-left: 6px solid var(--primary); 
+            overflow: auto; 
+        }
+
+        .professor-explanation h4 { 
+            color: var(--primary); 
+            font-size: 1.5rem; 
+            margin-bottom: 1rem; 
+            display: flex; 
+            align-items: center; 
+            gap: 0.5rem; 
+        }
+
+        .professor-explanation p { 
+            font-family: var(--font-en); 
+            font-size: 1.125rem; 
+            line-height: 2.2; 
+            color: var(--text); 
+            word-wrap: break-word; 
+            text-align: left; 
+            direction: ltr; 
+        }
+
+        .professor-explanation strong { 
+            color: var(--primary-dark); 
+            font-weight: 900; 
+        }
+
+        .practical-example { 
+            margin: 1.5rem 0; 
+            padding: 1.5rem; 
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(5, 150, 105, 0.1)); 
+            border-radius: var(--radius-2xl); 
+            border: 2px dashed var(--secondary); 
+            border-left: 6px solid var(--secondary); 
+            overflow: auto; 
+        }
+
+        .practical-example h4 { 
+            color: var(--secondary); 
+            font-size: 1.5rem; 
+            margin-bottom: 1rem; 
+            display: flex; 
+            align-items: center; 
+            gap: 0.5rem; 
+        }
+
+        .practical-example p { 
+            font-family: var(--font-en); 
+            font-size: 1rem; 
+            line-height: 2.2; 
+            color: var(--text); 
+            word-wrap: break-word; 
+            text-align: left; 
+            direction: ltr; 
+        }
+
+        .practical-example strong { 
+            color: var(--secondary-dark); 
+            font-weight: 900; 
+        }
+
+        .doctor-note { 
+            margin: 1.5rem 0; 
+            padding: 1.5rem; 
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(217, 119, 6, 0.15)); 
+            border-radius: var(--radius-2xl); 
+            border: 3px solid var(--accent); 
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.2); 
+            overflow: auto; 
+        }
+
+        .doctor-note h4 { 
+            color: var(--accent); 
+            font-size: 1.5rem; 
+            margin-bottom: 1rem; 
+            display: flex; 
+            align-items: center; 
+            gap: 0.5rem; 
+        }
+
+        .doctor-note p { 
+            font-family: var(--font-en); 
+            font-size: 1.125rem; 
+            line-height: 2.2; 
+            color: var(--text); 
+            font-weight: 700; 
+            word-wrap: break-word; 
+            text-align: left; 
+            direction: ltr; 
+        }
+
+        .doctor-note strong { 
+            color: var(--accent-dark); 
+            font-weight: 900; 
+        }
+
+        .exam-question { 
+            margin: 1.5rem 0; 
+            padding: 1.5rem; 
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(220, 38, 38, 0.1)); 
+            border-radius: var(--radius-2xl); 
+            border: 2px solid var(--danger); 
+            border-left: 6px solid var(--danger); 
+            overflow: auto; 
+        }
+
+        .exam-question h4 { 
+            color: var(--danger); 
+            font-size: 1.5rem; 
+            margin-bottom: 1rem; 
+            display: flex; 
+            align-items: center; 
+            gap: 0.5rem; 
+        }
+
+        .exam-question p { 
+            font-family: var(--font-en); 
+            font-size: 1rem; 
+            line-height: 2.2; 
+            color: var(--text); 
+            word-wrap: break-word; 
+            text-align: left; 
+            direction: ltr; 
+        }
+
+        /* Comparison Table */
+        .comparison-container { 
+            max-width: 1400px; 
+            margin: 1.5rem auto; 
+            padding: 1.5rem; 
+        }
+
+        .comparison-table-3col { 
+            display: grid; 
+            grid-template-columns: 1fr; 
+            gap: 0; 
+            margin: 1.5rem 0; 
+            border-radius: var(--radius-2xl); 
+            overflow: auto; 
+            box-shadow: var(--shadow-xl); 
+        }
+
+        .comparison-header { 
+            display: grid; 
+            grid-template-columns: 1.2fr 1.5fr 1.5fr; 
+            gap: 2px; 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+        }
+
+        .comparison-header > div { 
+            padding: 1.5rem; 
+            text-align: center; 
+            font-weight: 900; 
+            font-size: 1.25rem; 
+            color: white; 
+            word-wrap: break-word; 
+        }
+
+        .comparison-row { 
+            display: grid; 
+            grid-template-columns: 1.2fr 1.5fr 1.5fr; 
+            gap: 2px; 
+            background: var(--border); 
+        }
+
+        .comparison-row > div { 
+            padding: 1.5rem; 
+            background: var(--bg-card); 
+            font-size: 1.125rem; 
+            line-height: 1.8; 
+            word-wrap: break-word; 
+        }
+
+        .col-aspect { 
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(245, 158, 11, 0.1)); 
+            font-weight: 800; 
+            text-align: center; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+        }
+
+        .col-item1 { 
+            background-color: rgba(99, 102, 241, 0.02); 
+            border-right: 4px solid var(--primary); 
+            text-align: left; 
+            direction: ltr; 
+        }
+
+        .col-item2 { 
+            background-color: rgba(16, 185, 129, 0.02); 
+            border-left: 4px solid var(--secondary); 
+            text-align: left; 
+            direction: ltr; 
+        }
+
+        /* Important Numbers */
+        .numbers-container { 
+            max-width: 1200px; 
+            margin: 1.5rem auto; 
+            padding: 1.5rem; 
+        }
+
+        .number-slide { 
+            margin: 3rem 0; 
+            padding: 2rem; 
+            background: var(--bg-card); 
+            border-radius: var(--radius-2xl); 
+            box-shadow: var(--shadow-xl); 
+            overflow: auto; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+        }
+
+        .number-highlight { 
+            font-size: 8rem; 
+            font-weight: 900; 
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FF6B6B 100%); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+            background-clip: text; 
+            margin-bottom: 1.5rem; 
+            animation: numberPulse 2s ease-in-out infinite; 
+        }
+
+        @keyframes numberPulse { 
+            0%, 100% { transform: scale(1); } 
+            50% { transform: scale(1.1); } 
+        }
+
+        .number-title { 
+            font-size: 1.875rem; 
+            color: var(--primary); 
+            margin-bottom: 1.5rem; 
+            text-align: center; 
+        }
+
+        .number-description { 
+            font-size: 1.25rem; 
+            color: var(--text); 
+            margin-bottom: 1.5rem; 
+            text-align: center; 
+            max-width: 800px; 
+        }
+
+        .number-explanation { 
+            width: 100%; 
+            margin-top: 1.5rem; 
+        }
+
+        /* Final Review */
+        .review-section { 
+            max-width: 1200px; 
+            margin: 1.5rem auto; 
+            padding: 1.5rem; 
+        }
+
+        .review-slide { 
+            margin: 3rem 0; 
+            padding: 2rem; 
+            background: var(--bg-card); 
+            border-radius: var(--radius-2xl); 
+            box-shadow: var(--shadow-xl); 
+            overflow: auto; 
+        }
+
+        .review-title { 
+            font-size: 1.875rem; 
+            color: var(--primary); 
+            margin-bottom: 1.5rem; 
+            text-align: center; 
+        }
+
+        .review-content { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 1.5rem; 
+        }
+
+        .review-english { 
+            font-family: var(--font-en); 
+            font-size: 1.25rem; 
+            line-height: 1.8; 
+            color: var(--text); 
+            padding: 1.5rem; 
+            background: var(--bg-secondary); 
+            border-radius: var(--radius-xl); 
+            border-left: 4px solid var(--primary); 
+        }
+
+        .review-arabic { 
+            font-family: var(--font-ar); 
+            font-size: 1.25rem; 
+            line-height: 2; 
+            color: var(--text); 
+            padding: 1.5rem; 
+            background: var(--bg-secondary); 
+            border-radius: var(--radius-xl); 
+            border-right: 4px solid var(--secondary); 
+            text-align: right; 
+            direction: rtl; 
+        }
+
+        .review-explanation { 
+            margin-top: 1.5rem; 
+            padding: 1.5rem; 
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1)); 
+            border-radius: var(--radius-xl); 
+            border: 2px solid var(--primary); 
+        }
+
+        .review-explanation h4 { 
+            color: var(--primary); 
+            font-size: 1.5rem; 
+            margin-bottom: 1rem; 
+        }
+
+        .review-explanation p { 
+            font-size: 1.125rem; 
+            line-height: 1.8; 
+        }
+
+        .review-example { 
+            margin-top: 1.5rem; 
+            padding: 1.5rem; 
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(5, 150, 105, 0.1)); 
+            border-radius: var(--radius-xl); 
+            border: 2px dashed var(--secondary); 
+        }
+
+        .review-example h4 { 
+            color: var(--secondary); 
+            font-size: 1.5rem; 
+            margin-bottom: 1rem; 
+        }
+
+        .review-example p { 
+            font-size: 1.125rem; 
+            line-height: 1.8; 
+        }
+
+        .review-exam-question { 
+            margin-top: 1.5rem; 
+            padding: 1.5rem; 
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(220, 38, 38, 0.1)); 
+            border-radius: var(--radius-xl); 
+            border: 2px solid var(--danger); 
+        }
+
+        .review-exam-question h4 { 
+            color: var(--danger); 
+            font-size: 1.5rem; 
+            margin-bottom: 1rem; 
+        }
+
+        .review-exam-question p { 
+            font-size: 1.125rem; 
+            line-height: 1.8; 
+        }
+
+        /* Quiz Section */
+        .quiz-container { 
+            max-width: 1200px; 
+            margin: 1.5rem auto; 
+            padding: 1.5rem; 
+        }
+
+        .quiz-controls { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            margin-bottom: 1.5rem; 
+            flex-wrap: wrap; 
+            gap: 1.5rem; 
+        }
+
+        .quiz-timer { 
+            background: linear-gradient(135deg, var(--accent), var(--danger)); 
+            color: white; 
+            padding: 1rem 1.5rem; 
+            border-radius: var(--radius-xl); 
+            font-size: 1.25rem; 
+            font-weight: 700; 
+            display: flex; 
+            align-items: center; 
+            gap: 0.5rem; 
+            box-shadow: var(--shadow); 
+        }
+
+        .quiz-stats { 
+            display: flex; 
+            gap: 1.5rem; 
+            flex-wrap: wrap; 
+        }
+
+        .stat-badge { 
+            background: var(--bg-secondary); 
+            padding: 1rem 1.5rem; 
+            border-radius: var(--radius-xl); 
+            border: 2px solid var(--border); 
+            display: flex; 
+            align-items: center; 
+            gap: 0.5rem; 
+            font-weight: 700; 
+        }
+
+        .question-card { 
+            background: var(--bg-secondary); 
+            border-radius: var(--radius-2xl); 
+            padding: 1.5rem; 
+            margin-bottom: 1.5rem; 
+            box-shadow: var(--shadow); 
+            border-right: 5px solid var(--primary); 
+            position: relative; 
+            transition: var(--transition-all); 
+        }
+
+        .question-card:hover { 
+            transform: translateY(-2px); 
+            box-shadow: var(--shadow-lg); 
+        }
+
+        .question-card.answered { 
+            border-right-color: var(--secondary); 
+        }
+
+        .question-difficulty { 
+            position: absolute; 
+            top: 1.5rem; 
+            left: 1.5rem; 
+            padding: 0.25rem 0.5rem; 
+            border-radius: var(--radius-sm); 
+            font-size: 0.75rem; 
+            font-weight: 700; 
+            text-transform: uppercase; 
+        }
+
+        .difficulty-easy { 
+            background: var(--secondary); 
+            color: white; 
+        }
+
+        .difficulty-medium { 
+            background: var(--accent); 
+            color: white; 
+        }
+
+        .difficulty-hard { 
+            background: var(--danger); 
+            color: white; 
+        }
+
+        .question-header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: flex-start; 
+            margin-bottom: 1.5rem; 
+            gap: 1.5rem; 
+        }
+
+        .question-number { 
+            background: var(--primary); 
+            color: white; 
+            width: 40px; 
+            height: 40px; 
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-weight: 700; 
+            font-size: 1.25rem; 
+            flex-shrink: 0; 
+            box-shadow: var(--shadow); 
+            order: 2; 
+        }
+
+        .question-text { 
+            font-size: 1.25rem; 
+            font-weight: 700; 
+            font-family: var(--font-en); 
+            text-align: right; 
+            direction: ltr; 
+            flex: 1; 
+            line-height: 1.8; 
+            order: 1; 
+            padding-left: 1.5rem; 
+        }
+
+        .options { 
+            display: grid; 
+            gap: 0.75rem; 
+        }
+
+        .option { 
+            display: flex; 
+            align-items: center; 
+            gap: 0.75rem; 
+            padding: 1rem; 
+            background: var(--bg); 
+            border: 2px solid var(--border); 
+            border-radius: var(--radius-xl); 
+            cursor: pointer; 
+            transition: var(--transition-all); 
+        }
+
+        .option:hover { 
+            background: var(--bg-secondary); 
+            border-color: var(--primary); 
+            transform: translateX(-5px); 
+        }
+
+        .option-letter { 
+            width: 35px; 
+            height: 35px; 
+            min-width: 35px; 
+            background: var(--primary); 
+            color: white; 
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-weight: 700; 
+            font-size: 1.125rem; 
+            flex-shrink: 0; 
+        }
+
+        .option-text { 
+            flex: 1; 
+            font-family: var(--font-en); 
+            text-align: right; 
+            direction: ltr; 
+            font-size: 1.125rem; 
+        }
+
+        .option.selected { 
+            background: rgba(99, 102, 241, 0.1); 
+            border-color: var(--primary); 
+            border-width: 3px; 
+        }
+
+        .option.correct { 
+            background: rgba(16, 185, 129, 0.1); 
+            border-color: var(--secondary); 
+            border-width: 3px; 
+        }
+
+        .option.correct .option-letter { 
+            background: var(--secondary); 
+        }
+
+        .option.wrong { 
+            background: rgba(239, 68, 68, 0.1); 
+            border-color: var(--danger); 
+            border-width: 3px; 
+        }
+
+        .option.wrong .option-letter { 
+            background: var(--danger); 
+        }
+
+        .explanation { 
+            margin-top: 1.5rem; 
+            padding: 1.5rem; 
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(16, 185, 129, 0.05)); 
+            border-radius: var(--radius-xl); 
+            border: 2px solid var(--secondary); 
+            display: none; 
+        }
+
+        .explanation.show { 
+            display: block; 
+            animation: slideDown 0.5s ease; 
+        }
+
+        @keyframes slideDown { 
+            from { opacity: 0; max-height: 0; } 
+            to { opacity: 1; max-height: 1000px; } 
+        }
+
+        .dual-content { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 1.5rem; 
+        }
+
+        .arabic-content { 
+            text-align: right; 
+            direction: rtl; 
+            padding: 1rem; 
+            background: var(--bg); 
+            border-radius: var(--radius-xl); 
+            border-right: 4px solid var(--secondary); 
+            font-family: var(--font-ar); 
+        }
+
+        .english-content { 
+            text-align: left; 
+            direction: ltr; 
+            padding: 1rem; 
+            background: var(--bg); 
+            border-radius: var(--radius-xl); 
+            border-left: 4px solid var(--primary); 
+            font-family: var(--font-en); 
+        }
+
+        .submit-section { 
+            text-align: center; 
+            margin: 1.5rem 0; 
+        }
+
+        .submit-btn { 
+            background: linear-gradient(135deg, var(--secondary), #059669); 
+            color: white; 
+            border: none; 
+            padding: 1rem 2rem; 
+            font-size: 1.25rem; 
+            font-weight: 700; 
+            border-radius: var(--radius-xl); 
+            cursor: pointer; 
+            transition: var(--transition-all); 
+            box-shadow: var(--shadow); 
+        }
+
+        .submit-btn:hover { 
+            transform: translateY(-3px); 
+            box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3); 
+        }
+
+        .results { 
+            background: var(--bg); 
+            border-radius: var(--radius-2xl); 
+            padding: 2rem; 
+            margin: 1.5rem 0; 
+            box-shadow: var(--shadow); 
+            text-align: center; 
+            display: none; 
+        }
+
+        .results.show { 
+            display: block; 
+            animation: fadeInPage 0.5s ease; 
+        }
+
+        .score-circle { 
+            width: 150px; 
+            height: 150px; 
+            border-radius: 50%; 
+            background: linear-gradient(135deg, var(--primary), var(--secondary)); 
+            color: white; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+            margin: 0 auto 1.5rem; 
+            font-size: 3rem; 
+            font-weight: 700; 
+            box-shadow: var(--shadow); 
+        }
+
+        .stats { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); 
+            gap: 1.5rem; 
+            margin: 1.5rem 0; 
+        }
+
+        .stat-item { 
+            background: var(--bg-secondary); 
+            padding: 1.5rem; 
+            border-radius: var(--radius-xl); 
+            text-align: center; 
+            box-shadow: var(--shadow); 
+        }
+
+        .stat-number { 
+            font-size: 2rem; 
+            font-weight: 700; 
+            color: var(--primary); 
+            margin-bottom: 0.5rem; 
+        }
+
+        .stat-label { 
+            font-size: 0.875rem; 
+            color: var(--text-secondary); 
+            font-weight: 600; 
+        }
+
+        /* Words Test Section */
+        .words-question-card { 
+            background: var(--bg-secondary); 
+            border-radius: var(--radius-2xl); 
+            padding: 1.5rem; 
+            margin-bottom: 1.5rem; 
+            box-shadow: var(--shadow); 
+            border-right: 5px solid var(--secondary); 
+        }
+
+        .word-display { 
+            font-size: 2.5rem; 
+            font-weight: 700; 
+            text-align: center; 
+            margin: 1.5rem 0; 
+            color: var(--primary); 
+            font-family: var(--font-en); 
+            padding: 1.5rem; 
+            background: var(--bg); 
+            border-radius: var(--radius-xl); 
+            box-shadow: var(--shadow); 
+        }
+
+        .words-option { 
+            display: flex; 
+            align-items: center; 
+            gap: 0.75rem; 
+            padding: 1rem; 
+            background: var(--bg); 
+            border: 2px solid var(--border); 
+            border-radius: var(--radius-xl); 
+            cursor: pointer; 
+            transition: var(--transition-all); 
+            font-family: var(--font-ar); 
+            text-align: right; 
+        }
+
+        .words-option:hover { 
+            background: var(--bg-secondary); 
+            border-color: var(--secondary); 
+            transform: translateX(-5px); 
+        }
+
+        .words-option-letter { 
+            width: 35px; 
+            height: 35px; 
+            min-width: 35px; 
+            background: var(--secondary); 
+            color: white; 
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-weight: 700; 
+            flex-shrink: 0; 
+        }
+
+        .words-option.selected { 
+            background: rgba(16, 185, 129, 0.1); 
+            border-color: var(--secondary); 
+            border-width: 3px; 
+        }
+
+        .words-option.correct { 
+            background: rgba(16, 185, 129, 0.2); 
+            border-color: var(--secondary); 
+            border-width: 3px; 
+        }
+
+        .words-option.correct .words-option-letter { 
+            background: var(--secondary); 
+        }
+
+        .words-option.wrong { 
+            background: rgba(239, 68, 68, 0.2); 
+            border-color: var(--danger); 
+            border-width: 3px; 
+        }
+
+        .words-option.wrong .words-option-letter { 
+            background: var(--danger); 
+        }
+
+        /* Tricks Section */
+        .trick-card { 
+            background: var(--bg-secondary); 
+            border-radius: var(--radius-2xl); 
+            padding: 1.5rem; 
+            margin-bottom: 1.5rem; 
+            box-shadow: var(--shadow); 
+            border-right: 5px solid var(--accent); 
+        }
+
+        .trick-header { 
+            display: flex; 
+            align-items: center; 
+            gap: 0.75rem; 
+            margin-bottom: 1.5rem; 
+        }
+
+        .trick-icon { 
+            font-size: 1.75rem; 
+        }
+
+        .trick-title { 
+            font-size: 1.5rem; 
+            font-weight: 700; 
+            color: var(--accent); 
+        }
+
+        .trick-analysis { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 1.5rem; 
+        }
+
+        .analysis-arabic { 
+            text-align: right; 
+            direction: rtl; 
+            padding: 1rem; 
+            background: var(--bg); 
+            border-radius: var(--radius-xl); 
+            border-right: 4px solid var(--accent); 
+            font-family: var(--font-ar); 
+        }
+
+        .analysis-english { 
+            text-align: left; 
+            direction: ltr; 
+            padding: 1rem; 
+            background: var(--bg); 
+            border-radius: var(--radius-xl); 
+            border-left: 4px solid var(--primary); 
+            font-family: var(--font-en); 
+        }
+
+        .developer-signature { 
+            text-align: center; 
+            margin-top: 1.5rem; 
+            padding: 1rem; 
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(16, 185, 129, 0.1)); 
+            border-radius: var(--radius-xl); 
+            border: 2px dashed var(--accent); 
+        }
+
+        .signature-text { 
+            font-size: 1.125rem; 
+            font-weight: 700; 
+            color: var(--accent); 
+            font-style: italic; 
+        }
+
+        /* Footer */
+        footer { 
+            background: linear-gradient(135deg, #1E40AF 0%, #2563EB 50%, #10B981 100%); 
+            color: white; 
+            padding: 3rem 1.5rem; 
+            margin-top: 3rem; 
+            border-top: 5px solid var(--accent); 
+            position: relative; 
+            overflow: auto; 
+        }
+
+        footer::before { 
+            content: ''; 
+            position: absolute; 
+            top: -50%; 
+            left: -50%; 
+            width: 200%; 
+            height: 200%; 
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px); 
+            background-size: 50px 50px; 
+            animation: moveBackground 20s linear infinite; 
+        }
+
+        @keyframes moveBackground { 
+            0% { transform: translate(0, 0); } 
+            100% { transform: translate(50px, 50px); } 
+        }
+
+        .footer-content { 
+            position: relative; 
+            z-index: 1; 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            text-align: center; 
+        }
+
+        .footer-title { 
+            font-size: 2.5rem; 
+            font-weight: 900; 
+            margin-bottom: 1.5rem; 
+        }
+
+        .contact-links { 
+            display: flex; 
+            justify-content: center; 
+            gap: 1.5rem; 
+            flex-wrap: wrap; 
+            margin: 3rem 0; 
+        }
+
+        .contact-item { 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            gap: 0.5rem; 
+            padding: 1.5rem; 
+            background: rgba(255, 255, 255, 0.1); 
+            border-radius: var(--radius-2xl); 
+            color: white; 
+            text-decoration: none; 
+            transition: var(--transition-all); 
+            backdrop-filter: blur(10px); 
+            -webkit-backdrop-filter: blur(10px); 
+            border: 2px solid rgba(255, 255, 255, 0.2); 
+            min-width: 200px; 
+        }
+
+        .contact-item:hover { 
+            transform: translateY(-5px) scale(1.05); 
+            background: rgba(255, 255, 255, 0.2); 
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); 
+        }
+
+        .contact-icon { 
+            font-size: 3rem; 
+        }
+
+        .contact-text { 
+            font-size: 1.25rem; 
+            font-weight: 800; 
+        }
+
+        .contact-number { 
+            font-size: 1.5rem; 
+            font-weight: 900; 
+            color: #FFD700; 
+        }
+
+        .footer-dedication { 
+            background: rgba(255, 255, 255, 0.1); 
+            border-radius: var(--radius-2xl); 
+            padding: 3rem 1.5rem; 
+            margin: 3rem auto; 
+            max-width: 900px; 
+            backdrop-filter: blur(10px); 
+            -webkit-backdrop-filter: blur(10px); 
+            border: 3px solid rgba(255, 215, 0, 0.3); 
+        }
+
+        .dedication-icon { 
+            font-size: 5rem; 
+            margin-bottom: 1rem; 
+        }
+
+        .footer-dedication h3 { 
+            font-size: 2.5rem; 
+            margin-bottom: 1.5rem; 
+            color: #FFD700; 
+            font-weight: 900; 
+        }
+
+        .dedication-text { 
+            font-size: 1.25rem; 
+            line-height: 2.2; 
+            font-weight: 700; 
+            font-family: var(--font-ar); 
+            text-align: center; 
+        }
+
+        .dedication-text strong { 
+            color: #FFD700; 
+            font-size: 1.125rem; 
+        }
+
+        .footer-developer { 
+            border-top: 3px solid rgba(255, 255, 255, 0.3); 
+            padding-top: 3rem; 
+            margin-top: 3rem; 
+        }
+
+        .developer-line { 
+            font-size: 1.5rem; 
+            font-weight: 800; 
+            margin-bottom: 1rem; 
+            font-family: var(--font-en); 
+        }
+
+        .developer-highlight { 
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FF6B6B 100%); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+            background-clip: text; 
+            font-weight: 900; 
+            font-size: 1.875rem; 
+            filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.6)); 
+        }
+
+        .university-line { 
+            font-size: 1.25rem; 
+            font-weight: 700; 
+            margin-bottom: 1rem; 
+            font-family: var(--font-en); 
+        }
+
+        .copyright-line { 
+            font-size: 1rem; 
+            opacity: 0.9; 
+            font-family: var(--font-en); 
+        }
+
+        /* WhatsApp Button */
+        .whatsapp-float { 
+            position: fixed; 
+            bottom: 30px; 
+            left: 30px; 
+            background: #25D366; 
+            color: white; 
+            width: 60px; 
+            height: 60px; 
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-size: 28px; 
+            box-shadow: var(--shadow); 
+            cursor: pointer; 
+            transition: var(--transition-all); 
+            z-index: 1000; 
+            text-decoration: none; 
+        }
+
+        .whatsapp-float:hover { 
+            transform: scale(1.1); 
+        }
+
+        /* Interactive Message */
+        .interactive-message {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: var(--radius-2xl);
+            padding: 2rem;
+            box-shadow: var(--shadow-2xl);
+            z-index: 2000;
+            display: none;
+            text-align: center;
+            max-width: 90%;
+            border: 2px solid var(--primary);
+        }
+
+        body.dark-mode .interactive-message {
+            background: rgba(30, 41, 59, 0.95);
+            border-color: var(--primary);
+        }
+
+        .message-content {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-family: var(--font-ar);
+        }
+
+        .message-arabic {
+            font-size: 1.25rem;
+            color: var(--text);
+            margin-bottom: 1.5rem;
+            font-family: var(--font-ar);
+        }
+
+        .message-close {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius-xl);
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition-all);
+        }
+
+        .message-close:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) { 
+            .header-container { 
+                padding: 0.5rem 1rem; 
+            } 
+            
+            .main-nav { 
+                width: 100%; 
+                justify-content: center; 
+            } 
+            
+            .main-nav a { 
+                font-size: 1rem; 
+                padding: 0.75rem 1rem; 
+            } 
+        }
+
+        @media (max-width: 768px) { 
+            html { 
+                font-size: 14px; 
+            } 
+            
+            .dual-text-row { 
+                grid-template-columns: 1fr; 
+                gap: 1rem; 
+            } 
+            
+            .english-side { 
+                grid-column: 1; 
+                order: 1; 
+            } 
+            
+            .arrow-separator { 
+                grid-column: 1; 
+                order: 2; 
+                transform: rotate(90deg); 
+                margin: 0.5rem 0; 
+            } 
+            
+            .arabic-side { 
+                grid-column: 1; 
+                order: 3; 
+            } 
+            
+            .flashcard { 
+                height: 350px; 
+            } 
+            
+            .flashcard-front h2 { 
+                font-size: 2.5rem; 
+            } 
+            
+            .flashcard-back h2 { 
+                font-size: 2rem; 
+            } 
+            
+            .flashcard-back h3 { 
+                font-size: 1.5rem; 
+            } 
+            
+            .btn-control { 
+                padding: 0.75rem 1.5rem; 
+                font-size: 1rem; 
+            } 
+            
+            .comparison-header, .comparison-row { 
+                grid-template-columns: 1fr; 
+            } 
+            
+            .contact-links { 
+                flex-direction: column; 
+                align-items: center; 
+                gap: 1rem; 
+            } 
+            
+            .contact-item { 
+                width: 100%; 
+                max-width: 300px; 
+            } 
+            
+            .footer-dedication { 
+                padding: 1.5rem 1rem; 
+            } 
+            
+            .dedication-text { 
+                font-size: 1rem; 
+            } 
+            
+            .dedication-icon { 
+                font-size: 3rem; 
+            } 
+            
+            .dual-content { 
+                grid-template-columns: 1fr; 
+            } 
+            
+            .trick-analysis { 
+                grid-template-columns: 1fr; 
+            } 
+        }
+
+        @media (max-width: 640px) { 
+            .site-title { 
+                font-size: 1.125rem; 
+            } 
+            
+            .developer-name { 
+                font-size: 0.875rem; 
+            } 
+            
+            .main-nav a { 
+                font-size: 0.875rem; 
+                padding: 0.5rem 0.75rem; 
+            } 
+            
+            .page { 
+                padding: 100px 0.75rem 1rem; 
+            } 
+            
+            .concept-slide, .comparison-container, .review-section { 
+                padding: 1rem; 
+            } 
+            
+            .sub-concept, .professor-explanation, .practical-example, .doctor-note { 
+                padding: 1.5rem; 
+            } 
+            
+            .professor-explanation p, .practical-example p, .doctor-note p { 
+                font-size: 1rem; 
+            } 
+            
+            .numbers-container { 
+                padding: 1rem; 
+            } 
+            
+            .number-highlight { 
+                font-size: 4rem; 
+            } 
+            
+            .review-content { 
+                gap: 1rem; 
+            } 
+            
+            .question-header { 
+                flex-direction: column; 
+                align-items: flex-end; 
+                gap: 0.5rem; 
+            } 
+            
+            .question-number { 
+                order: 1; 
+            } 
+            
+            .question-text { 
+                order: 2; 
+                padding-left: 0; 
+            } 
+            
+            .word-display { 
+                font-size: 2rem; 
+            } 
+        }
+
+        @media (max-width: 480px) { 
+            .flashcard { 
+                height: 300px; 
+            } 
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="main-header">
+        <div class="header-container">
+            <!-- Hamburger Menu -->
+            <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="logo-section">
+                <div class="site-title">📚 Interactive Learning Platform - Maslow's Hierarchy of Human Needs</div>
+                <div class="developer-name">by Mohamed Salah</div>
+            </div>
+            
+            <div class="header-controls">
+                <button class="theme-toggle" id="theme-toggle"><i class="fas fa-moon"></i></button>
+            </div>
+
+            <!-- Navigation Container -->
+            <div class="nav-container" id="nav-container">
+                <nav class="main-nav">
+                    <a href="#" data-page="page1" class="nav-link active">🎴 Flashcards</a>
+                    <a href="#" data-page="page2" class="nav-link">📖 Detailed Explanation</a>
+                    <a href="#" data-page="page3" class="nav-link">🔄 Comparisons</a>
+                    <a href="#" data-page="page4" class="nav-link">🔢 Important Numbers</a>
+                    <a href="#" data-page="page5" class="nav-link">📝 Final Review</a>
+                    <a href="#" data-page="page6" class="nav-link">❓ Question Bank</a>
+                    <a href="#" data-page="page7" class="nav-link">💡 Exam Tricks</a>
+                    <a href="#" data-page="page8" class="nav-link">📚 Words Test</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Interactive Message -->
+    <div class="interactive-message" id="interactive-message">
+        <div class="message-content">صل على النبي ﷺ</div>
+        <div class="message-arabic">Pray upon the Prophet Muhammad ﷺ</div>
+        <button class="message-close" id="message-close">Close</button>
+    </div>
+
+    <!-- Page 1: Flashcards -->
+    <div id="page1" class="page active-page">
+        <h1>🎴 Flashcards - البطاقات التعليمية</h1>
+        <div class="flashcard-section">
+            <div class="flashcard" id="flashcard">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front">
+                        <h2 id="card-front-text">Maslow's Hierarchy of Needs</h2>
+                    </div>
+                    <div class="flashcard-back" id="card-back">
+                        <!-- Content will be populated by JS -->
+                    </div>
+                </div>
+            </div>
+            <div class="flashcard-counter">
+                <span id="current-card">1</span> / <span id="total-cards">5</span>
+            </div>
+            <div class="flashcard-controls-container">
+                <div class="flashcard-controls">
+                    <button id="prev-card" class="btn-control">⏮️ Previous</button>
+                    <button id="flip-card" class="btn-control">🔄 Flip</button>
+                    <button id="speak-card" class="btn-control">🔊 Speak</button>
+                    <button id="next-card" class="btn-control">Next ⏭️</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 2: Detailed Explanation -->
+    <div id="page2" class="page">
+        <h1>📖 Detailed Explanation - الشرح المفصل</h1>
+        <div class="concept-slide numbered-section" id="detailed-explanation">
+            <!-- Content will be populated by JS -->
+        </div>
+    </div>
+
+    <!-- Page 3: Comparisons -->
+    <div id="page3" class="page">
+        <h1>🔄 Key Comparisons - المقارنات الأساسية</h1>
+        <div class="comparison-container numbered-section" id="comparisons">
+            <!-- Content will be populated by JS -->
+        </div>
+    </div>
+
+    <!-- Page 4: Important Numbers -->
+    <div id="page4" class="page">
+        <h1>🔢 Important Numbers - الأرقام المهمة</h1>
+        <div class="numbers-container numbered-section" id="important-numbers">
+            <!-- Content will be populated by JS -->
+        </div>
+    </div>
+
+    <!-- Page 5: Final Review -->
+    <div id="page5" class="page">
+        <h1>📝 Final Review - المراجعة النهائية</h1>
+        <div class="review-section numbered-section" id="final-review">
+            <!-- Content will be populated by JS -->
+        </div>
+    </div>
+
+    <!-- Page 6: Question Bank -->
+    <div id="page6" class="page">
+        <h1>❓ Question Bank - بنك الأسئلة</h1>
+        <div class="quiz-container">
+            <div class="quiz-controls">
+                <div class="quiz-timer">
+                    <i class="fas fa-clock"></i>
+                    <span id="quiz-timer">15:00</span>
+                </div>
+                <div class="quiz-stats">
+                    <div class="stat-badge">
+                        <i class="fas fa-check-circle"></i>
+                        <span id="answered-count">0</span>
+                        <span>مجاب</span>
+                    </div>
+                    <div class="stat-badge">
+                        <i class="fas fa-question-circle"></i>
+                        <span id="remaining-count">10</span>
+                        <span>متبقي</span>
+                    </div>
+                </div>
+            </div>
+            <div id="quiz-questions">
+                <!-- Questions will be generated here -->
+            </div>
+            <div class="submit-section">
+                <button class="submit-btn" id="submit-quiz">
+                    <i class="fas fa-paper-plane"></i>
+                    📝 إنهاء الامتحان
+                </button>
+            </div>
+            <div id="quiz-results" class="results"></div>
+        </div>
+    </div>
+
+    <!-- Page 7: Exam Tricks -->
+    <div id="page7" class="page">
+        <h1>💡 Exam Tricks - تريكات الامتحان</h1>
+        <div id="tricks-content">
+            <!-- Tricks will be generated here -->
+        </div>
+        <div class="developer-signature">
+            <div class="signature-text">By Mohamed Salah</div>
+        </div>
+    </div>
+
+    <!-- Page 8: Words Test -->
+    <div id="page8" class="page">
+        <h1>📚 Words Test - اختبار المصطلحات</h1>
+        <div class="quiz-container">
+            <div class="quiz-controls">
+                <div class="quiz-timer">
+                    <i class="fas fa-clock"></i>
+                    <span id="words-timer">10:00</span>
+                </div>
+                <div class="quiz-stats">
+                    <div class="stat-badge">
+                        <i class="fas fa-check-circle"></i>
+                        <span id="words-answered-count">0</span>
+                        <span>مجاب</span>
+                    </div>
+                    <div class="stat-badge">
+                        <i class="fas fa-language"></i>
+                        <span id="words-remaining-count">10</span>
+                        <span>متبقي</span>
+                    </div>
+                </div>
+            </div>
+            <div id="words-questions">
+                <!-- Words questions will be generated here -->
+            </div>
+            <div class="submit-section">
+                <button class="submit-btn" id="submit-words">
+                    <i class="fas fa-paper-plane"></i>
+                    📝 إنهاء الاختبار
+                </button>
+            </div>
+            <div id="words-results" class="results"></div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <h3 class="footer-title">📞 Contact Us - تواصل معنا</h3>
+            <div class="contact-links">
+                <a href="https://wa.me/201121833902" target="_blank" class="contact-item">
+                    <span class="contact-icon">📱</span>
+                    <span class="contact-text">WhatsApp</span>
+                    <span class="contact-number">01121833902</span>
+                </a>
+                <a href="tel:+201012575443" class="contact-item">
+                    <span class="contact-icon">📞</span>
+                    <span class="contact-text">Phone</span>
+                    <span class="contact-number">01012575443</span>
+                </a>
+                <a href="https://www.facebook.com/share/14MZDTy8cxk/" target="_blank" class="contact-item">
+                    <span class="contact-icon">👤</span>
+                    <span class="contact-text">Facebook</span>
+                    <span class="contact-number">Follow Us</span>
+                </a>
+            </div>
+            <div class="footer-dedication">
+                <div class="dedication-icon">🤲🏻</div>
+                <h3>صدقة جارية</h3>
+                <p class="dedication-text">
+                    صدقة جارية لي ولأمواتي وأموات المسلمين جميعاً وأهلي<br><br>
+                    <strong>اللهم اغفر لهم وارحمهم وعافهم واعف عنهم<br>
+                    وأكرم نزلهم ووسع مدخلهم<br>
+                    واغسلهم بالماء والثلج والبرد<br>
+                    ونقهم من الخطايا كما ينقى الثوب الأبيض من الدنس<br>
+                    وأبدلهم داراً خيراً من دارهم وأهلاً خيراً من أهلهم<br>
+                    وأدخلهم الجنة وأعذهم من عذاب القبر ومن عذاب النار<br>
+                    واجعل قبورهم روضة من رياض الجنة</strong><br><br>
+                    آمين يا رب العالمين 🤲🏻
+                </p>
+            </div>
+            <div class="footer-developer">
+                <p class="developer-line">
+                    Developed by <span class="developer-highlight">Mohamed Salah</span>
+                </p>
+                <p class="university-line">
+                    1st Nurse - KSIU (King Salman International University)
+                </p>
+                <p class="copyright-line">
+                    © 2025 - All Rights Reserved
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/201121833902" target="_blank" class="whatsapp-float">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        'use strict';
+
+        // Wait for DOM to be fully loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize variables
+            let currentCardIndex = 0;
+            let quizAnswers = [];
+            let wordsAnswers = [];
+            let quizTimerInterval = null;
+            let wordsTimerInterval = null;
+            let quizTimeLeft = 15 * 60; // 15 minutes
+            let wordsTimeLeft = 10 * 60; // 10 minutes
+            let selectedUsVoice = null; // To store the selected US voice
+            
+            // Flashcards data based on Maslow's Hierarchy of Needs
+            const flashcardsData = [
+                { 
+                    front: "Maslow's Hierarchy of Needs", 
+                    back: { 
+                        term: "Maslow's Hierarchy of Needs", 
+                        translation: "تسلسل احتياجات ماسلو", 
+                        english: "A theory in psychology proposed by Abraham Maslow in his 1943 paper 'A Theory of Human Motivation.' The hierarchy is often displayed as a pyramid with the most fundamental needs at the bottom and the need for self-actualization at the top.", 
+                        arabic: "نظرية في علم النفس اقترحها أبراهام ماسلو في ورقته البحثية عام 1943 بعنوان 'نظرية الدافعية البشرية'. غالبًا ما يُعرض التسلسل على شكل هرم مع الاحتياجات الأساسية في القاعدة واحتياجات تحقيق الذات في القمة." 
+                    } 
+                },
+                { 
+                    front: "Physiological Needs", 
+                    back: { 
+                        term: "Physiological Needs", 
+                        translation: "الاحتياجات الفسيولوجية", 
+                        english: "The most basic human needs required for survival, including air, water, food, shelter, sleep, clothing, and reproduction. These needs must be met before higher-level needs can be addressed.", 
+                        arabic: "أكثر الاحتياجات الإنسانية أساسية للبقاء، بما في ذلك الهواء والماء والطعام والمأوى والنوم والملابس والتكاثر. يجب تلبية هذه الاحتياجات قبل معالجة الاحتياجات ذات المستوى الأعلى." 
+                    } 
+                },
+                { 
+                    front: "Safety and Security Needs", 
+                    back: { 
+                        term: "Safety and Security Needs", 
+                        translation: "احتياجات الأمان والأمان", 
+                        english: "Once physiological needs are satisfied, the need for security and safety becomes salient. People want to experience order, predictability, and control in their lives. These needs can be fulfilled by family and society (e.g., police, schools, business, and medical care).", 
+                        arabic: "بمجرد إشباع الاحتياجات الفسيولوجية، يصبح الحاجة إلى الأمان والأمان بارزًا. يريد الناس تجربة النظام والقدرة على التنبؤ والسيطرة في حياتهم. يمكن تلبية هذه الاحتياجات من قبل الأسرة والمجتمع (مثل الشرطة والمدارس والأعمال والرعاية الطبية)." 
+                    } 
+                },
+                { 
+                    front: "Love and Belonging Needs", 
+                    back: { 
+                        term: "Love and Belonging Needs", 
+                        translation: "احتياجات الحب والانتماء", 
+                        english: "After physiological and safety needs have been fulfilled, the third level of human needs is social and involves feelings of belongingness. Humans are social creatures and have a need for interpersonal relationships, feeling of belonging, and being part of a group.", 
+                        arabic: "بعد إشباع الاحتياجات الفسيولوجية والأمان، يكون المستوى الثالث من الاحتياجات الإنسانية اجتماعيًا ويتضمن مشاعر الانتماء. البشر كائنات اجتماعية ولديهم حاجة للعلاقات الشخصية، وشعور الانتماء، والكون جزءًا من مجموعة." 
+                    } 
+                },
+                { 
+                    front: "Self-Esteem Needs", 
+                    back: { 
+                        term: "Self-Esteem Needs", 
+                        translation: "احتياجات تقدير الذات", 
+                        english: "The fourth level in Maslow's hierarchy is the need for appreciation and respect. Once the first three levels of needs are met, esteem needs become important. Maslow classified esteem needs into two categories: (a) esteem for oneself (dignity, achievement, mastery, independence) and (b) the desire for reputation or respect from others (status, prestige).", 
+                        arabic: "المستوى الرابع في تسلسل ماسلو هو الحاجة للتقدير والاحترام. بمجرد تلبية المستويات الثلاثة الأولى من الاحتياجات، تصبح احتياجات التقدير مهمة. صنف ماسلو احتياجات التقدير إلى فئتين: (أ) تقدير الذات (الكرامة والإنجاز والإتقان والاستقلالية) و (ب) الرغبة في السمعة أو الاحترام من الآخرين (المكانة والهيبة)." 
+                    } 
+                },
+                { 
+                    front: "Self-Actualization Needs", 
+                    back: { 
+                        term: "Self-Actualization Needs", 
+                        translation: "احتياجات تحقيق الذات", 
+                        english: "The highest level in Maslow's hierarchy, referring to the realization of a person's potential, self-fulfillment, seeking personal growth, and having peak experiences. Maslow describes this level as the desire to accomplish everything that one can, to become the most that one can be.", 
+                        arabic: "أعلى مستوى في تسلسل ماسلو، يشير إلى إمكانات الشخص وتحقيق الذات والسعي للنمو الشخصي وتجارب الذروة. يصف ماسلو هذا المستوى بأنه الرغبة في إنجاز كل ما يمكن للشخص، ليصبح أفضل ما يمكن أن يكون عليه." 
+                    } 
+                }
+            ];
+            
+            // Quiz data with difficulty levels
+            const quizData = [
+                // Easy questions (3)
+                { 
+                    question: "What is the primary focus of Maslow's Hierarchy of Needs?", 
+                    options: ["Human motivation and personal growth", "Medical diagnosis and treatment", "Nursing procedures and protocols", "Hospital administration"], 
+                    correct: 0, 
+                    difficulty: "easy",
+                    explanation: { 
+                        english: "Maslow's Hierarchy of Needs is a psychological theory about human motivation and personal growth, which explains how people progress through different levels of needs.", 
+                        arabic: "تسلسل احتياجات ماسلو هو نظرية نفسية حول الدافعية البشرية والنمو الشخصي، والتي تشرح كيف يتقدم الناس عبر مستويات مختلفة من الاحتياجات." 
+                    } 
+                },
+                { 
+                    question: "Which of the following is NOT one of the five levels in Maslow's Hierarchy?", 
+                    options: ["Physiological needs", "Safety and security", "Financial stability", "Self-actualization"], 
+                    correct: 2, 
+                    difficulty: "easy",
+                    explanation: { 
+                        english: "Financial stability is not one of the five levels in Maslow's Hierarchy. The five levels are: Physiological needs, Safety and security, Love and belonging, Self-esteem, and Self-actualization.", 
+                        arabic: "الاستقرار المالي ليس أحد المستويات الخمسة في تسلسل ماسلو. المستويات الخمسة هي: الاحتياجات الفسيولوجية، والأمان والأمان، والحب والانتماء، وتقدير الذات، وتحقيق الذات." 
+                    } 
+                },
+                { 
+                    question: "According to Maslow, which needs must be satisfied before higher-level needs can be addressed?", 
+                    options: ["Self-esteem needs", "Safety and security needs", "Physiological needs", "Love and belonging needs"], 
+                    correct: 2, 
+                    difficulty: "easy",
+                    explanation: { 
+                        english: "According to Maslow, physiological needs (the most basic needs for survival) must be satisfied before higher-level needs can be addressed. These include needs like air, water, food, and shelter.", 
+                        arabic: "وفقًا لماسلو، يجب إشباع الاحتياجات الفسيولوجية (أكثر الاحتياجات أساسية للبقاء) قبل معالجة الاحتياجات ذات المستوى الأعلى. وتشمل هذه الاحتياجات مثل الهواء والماء والطعام والمأوى." 
+                    } 
+                },
+                // Medium questions (4)
+                { 
+                    question: "How can a nurse help meet a patient's physiological needs?", 
+                    options: ["Providing emotional support", "Assisting with meals and positioning", "Encouraging social interaction", "Promoting independence in decision-making"], 
+                    correct: 1, 
+                    difficulty: "medium",
+                    explanation: { 
+                        english: "Nurses can help meet patients' physiological needs by assisting with meals, helping with positioning to prevent pressure ulcers, ensuring adequate hydration, and helping with elimination needs. These are all basic physiological needs that must be met for survival.", 
+                        arabic: "يمكن للممرضين مساعدة المرضى في تلبية احتياجاتهم الفسيولوجية عن طريق المساعدة في الوجبات، والمساعدة في الوضعية لمنع تقرحات الضغط، وضمان الترطيب الكافي، والمساعدة في احتياجات الإخراج. هذه كلها احتياجات فسيولوجية أساسية يجب تلبيتها للبقاء." 
+                    } 
+                },
+                { 
+                    question: "Which nursing intervention would best address a patient's safety and security needs?", 
+                    options: ["Providing a warm blanket", "Keeping bed rails up and call light within reach", "Arranging for family visits", "Offering praise for accomplishments"], 
+                    correct: 1, 
+                    difficulty: "medium",
+                    explanation: { 
+                        english: "Keeping bed rails up and ensuring the call light is within reach directly addresses the patient's safety and security needs. These interventions help prevent falls and ensure the patient can summon help when needed, which are fundamental to feeling safe in the healthcare environment.", 
+                        arabic: "رفع قضبان السرير وضمان وجود زر الاستدعاء في متناول اليد يعالج مباشرة احتياجات المريض للأمان والأمان. تساعد هذه التدخلات على منع السقوط وضمان قدرة المريض على طلب المساعدة عند الحاجة، وهو أمر أساسي للشعور بالأمان في بيئة الرعاية الصحية." 
+                    } 
+                },
+                { 
+                    question: "A patient who is isolated due to infection control measures is at risk of which unmet need according to Maslow?", 
+                    options: ["Physiological needs", "Safety and security needs", "Love and belonging needs", "Self-esteem needs"], 
+                    correct: 2, 
+                    difficulty: "medium",
+                    explanation: { 
+                        english: "A patient who is isolated due to infection control measures is at risk of unmet love and belonging needs. Isolation prevents social interaction and connection with others, which are essential for this level of need. Nurses should find alternative ways to help these patients feel connected, such as facilitating video calls with family.", 
+                        arabic: "المريض الذي يتم عزله بسبب تدابير مكافحة العدوى معرض لخطر عدم تلبية احتياجات الحب والانتماء. يمنع العزل التفاعل الاجتماعي والاتصال بالآخرين، وهو أمر ضروري لهذا المستوى من الاحتياج. يجب على الممرضين إيجاد طرق بديلة لمساعدة هؤلاء المرضى على الشعور بالاتصال، مثل تسهيل مكالمات الفيديو مع العائلة." 
+                    } 
+                },
+                { 
+                    question: "How can nurses support patients' self-esteem needs?", 
+                    options: ["Providing basic care", "Ensuring physical safety", "Recognizing accomplishments and promoting independence", "Offering emotional support during illness"], 
+                    correct: 2, 
+                    difficulty: "medium",
+                    explanation: { 
+                        english: "Nurses can support patients' self-esteem needs by recognizing their accomplishments, no matter how small, and promoting independence in self-care activities. This helps patients maintain dignity and feel valued, which are important components of self-esteem.", 
+                        arabic: "يمكن للممرضين دعم احتياجات تقدير الذات للمرضى من خلال الاعتراف بإنجازاتهم، مهما كانت صغيرة، وتعزيز الاستقلالية في أنشطة الرعاية الذاتية. هذا يساعد المرضى على الحفاظ على الكرامة والشعور بالتقدير، وهي مكونات مهمة لتقدير الذات." 
+                    } 
+                },
+                // Hard questions (3)
+                { 
+                    question: "A patient who has recently lost their job and is worried about paying for medical bills is experiencing a threat to which level of Maslow's Hierarchy?", 
+                    options: ["Physiological needs", "Safety and security needs", "Love and belonging needs", "Self-esteem needs"], 
+                    correct: 1, 
+                    difficulty: "hard",
+                    explanation: { 
+                        english: "This patient is experiencing a threat to their safety and security needs. Financial stability and the ability to pay for medical care are part of the safety and security level. When these needs are threatened, patients may experience anxiety that can affect their overall health and recovery.", 
+                        arabic: "هذا المريض يعاني من تهديد لاحتياجات الأمان والأمان. الاستقرار المالي والقدرة على دفع الرعاية الطبية هي جزء من مستوى الأمان والأمان. عندما تكون هذه الاحتياجات مهددة، قد يعاني المرضى من القلق الذي يمكن أن يؤثر على صحتهم العامة وتعافيهم." 
+                    } 
+                },
+                { 
+                    question: "According to Maslow's theory, why is it difficult for a person to focus on personal growth when they are experiencing severe pain?", 
+                    options: ["Pain consumes all mental energy", "Pain is a physiological need that must be addressed first", "Personal growth requires physical comfort", "Pain medications interfere with cognitive function"], 
+                    correct: 1, 
+                    difficulty: "hard",
+                    explanation: { 
+                        english: "According to Maslow's theory, pain represents an unmet physiological need. The theory states that lower-level needs must be at least partially satisfied before a person can strive to meet higher-level needs like self-actualization. Severe pain would demand attention and resources, making it difficult to focus on personal growth.", 
+                        arabic: "وفقًا لنظرية ماسلو، يمثل الألم حاجة فسيولوجية غير مشبعة. تنص النظرية على أنه يجب إشباع الاحتياجات ذات المستوى الأدنى على الأقل جزئيًا قبل أن يتمكن الشخص من السعي لتلبية الاحتياجات ذات المستوى الأعلى مثل تحقيق الذات. الألم الشديد سيطالب الانتباه والموارد، مما يجعل من الصعب التركيز على النمو الشخصي." 
+                    } 
+                },
+                { 
+                    question: "A patient who has achieved all their life goals and is now focusing on helping others achieve their potential is demonstrating which level of Maslow's Hierarchy?", 
+                    options: ["Self-esteem", "Self-actualization", "Love and belonging", "Transcendence"], 
+                    correct: 1, 
+                    difficulty: "hard",
+                    explanation: { 
+                        english: "This patient is demonstrating self-actualization, which is the highest level in Maslow's original hierarchy. Self-actualized individuals are characterized by their focus on personal growth, peak experiences, and helping others achieve their potential. Some theorists have proposed a level beyond self-actualization called transcendence, but this was not part of Maslow's original hierarchy.", 
+                        arabic: "هذا المريض يوضح تحقيق الذات، وهو أعلى مستوى في التسلسل الأصلي لماسلو. يتميز الأفراد الذين حققوا ذاتهم بتركيزهم على النمو الشخصي وتجارب الذروة ومساعدة الآخرين على تحقيق إمكاناتهم. اقترح بعض النظريين مستوى يتجاوز تحقيق الذات يسمى التجاوز، لكن هذا لم يكن جزءًا من التسلسل الأصلي لماسلو." 
+                    } 
+                }
+            ];
+            
+            // Words test data
+            const wordsData = [
+                { 
+                    word: "Physiological", 
+                    options: ["نفسي", "اجتماعي", "فسيولوجي", "عقلي"], 
+                    correct: 2 
+                },
+                { 
+                    word: "Safety", 
+                    options: ["حب", "أمان", "انتماء", "تقدير"], 
+                    correct: 1 
+                },
+                { 
+                    word: "Belonging", 
+                    options: ["انتماء", "أمان", "استقلالية", "تحقيق"], 
+                    correct: 0 
+                },
+                { 
+                    word: "Esteem", 
+                    options: ["حب", "احترام", "أمان", "انتماء"], 
+                    correct: 1 
+                },
+                { 
+                    word: "Self-actualization", 
+                    options: ["تقدير الذات", "تحقيق الذات", "الأمان", "الانتماء"], 
+                    correct: 1 
+                },
+                { 
+                    word: "Hierarchy", 
+                    options: ["شبكة", "دائرة", "تسلسل", "مجموعة"], 
+                    correct: 2 
+                },
+                { 
+                    word: "Motivation", 
+                    options: ["سلوك", "دافعية", "شخصية", "عقل"], 
+                    correct: 1 
+                },
+                { 
+                    word: "Homeostasis", 
+                    options: ["التكيف", "الاستتباب", "النمو", "التطور"], 
+                    correct: 1 
+                },
+                { 
+                    word: "Stimulus", 
+                    options: ["استجابة", "نتيجة", "منبه", "فعل"], 
+                    correct: 2 
+                },
+                { 
+                    word: "Feedback", 
+                    options: ["تغذية راجعة", "استجابة", "تحفيز", "تنظيم"], 
+                    correct: 0 
+                }
+            ];
+            
+            // Detailed explanation content
+            const detailedExplanationContent = [
+                {
+                    title: "Introduction to Maslow's Hierarchy",
+                    titleArabic: "مقدمة في تسلسل ماسلو",
+                    content: [
+                        {
+                            type: "dual-text-row",
+                            english: "<span class=\"highlight highlight-2\">Maslow's Hierarchy of Needs</span> is a motivational theory in psychology comprising a five-tier model of human needs, often depicted as hierarchical levels within a pyramid. From the bottom of the hierarchy upwards, the needs are: physiological, safety, love and belonging, esteem, and self-actualization.",
+                            arabic: "<span class=\"highlight highlight-2\">تسلسل احتياجات ماسلو</span> هي نظرية دافعية في علم النفس تتكون من نموذج من خمسة مستويات للاحتياجات الإنسانية، وغالبًا ما تُصور على شكل مستويات هرمية داخل هرم. من قاعدة التسلسل الهرمي صعودًا، الاحتياجات هي: فسيولوجية، وأمان، وحب وانتماء، وتقدير، وتحقيق الذات."
+                        },
+                        {
+                            type: "professor-explanation",
+                            title: "Professor's Explanation",
+                            content: "Maslow's theory suggests that people are motivated to fulfill basic needs before moving on to more advanced needs. This hierarchy is most often displayed as a pyramid. The lowest levels of the pyramid are made up of the most basic needs, while the more complex needs are located at the top of the pyramid. Once the most basic needs are fulfilled, people can then move up the pyramid to fulfill more complex needs.",
+                            contentArabic: "تقترح نظرية ماسلو أن الناس مدفوعون لإشباع الاحتياجات الأساسية قبل الانتقال إلى الاحتياجات الأكثر تقدمًا. غالبًا ما يُعرض هذا التسلسل الهرمي على شكل هرم. تتكون المستويات الدنيا من الهرم من أكثر الاحتياجات أساسية، بينما تقع الاحتياجات الأكثر تعقيدًا في قمة الهرم. بمجرد إشباع الاحتياجات الأساسية، يمكن للنموذج بعد ذلك الصعود في الهرم لإشباع الاحتياجات الأكثر تعقيدًا."
+                        },
+                        {
+                            type: "practical-example",
+                            title: "Practical Example",
+                            content: "In nursing practice, understanding Maslow's hierarchy helps prioritize patient care. For example, a patient who is having difficulty breathing (physiological need) would be attended to before addressing their need for education about their condition (higher-level need). This ensures that life-threatening issues are addressed first, followed by less urgent needs.",
+                            contentArabic: "في ممارسة التمريض، يساعد فهم تسلسل ماسلو على تحديد أولويات رعاية المريض. على سبيل المثال، المريض الذي يعاني من صعوبة في التنفس (حاجة فسيولوجية) سيتم الاهتمام به قبل معالجة حاجته للتعليم حول حالته (حاجة ذات مستوى أعلى). هذا يضمن معالجة القضايا المهددة للحياة أولاً، تليها الاحتياجات الأقل إلحاحًا."
+                        },
+                        {
+                            type: "doctor-note",
+                            title: "Doctor's Note",
+                            content: "While Maslow's hierarchy is widely taught in nursing education, it's important to recognize its limitations. Not everyone follows the hierarchy exactly as described, and cultural factors can influence which needs are prioritized. Additionally, some individuals may pursue higher-level needs even when basic needs are not fully met. Nevertheless, the theory provides a useful framework for understanding human motivation and prioritizing care.",
+                            contentArabic: "على الرغم من أن تسلسل ماسلو يُدرس على نطاق واسع في تعليم التمريض، من المهم الاعتراف بحدوده. لا يتبع الجميع التسلسل بالضبط كما هو موصوف، ويمكن للعوامل الثقافية أن تؤثر على الاحتياجات التي يتم إعطاؤها الأولوية. بالإضافة إلى ذلك، قد يسعى بعض الأفراد لتحقيق احتياجات ذات مستوى أعلى حتى عندما لا تكون الاحتياجات الأساسية مشبعة بالكامل. مع ذلك، توفر النظرية إطارًا مفيدًا لفهم الدافعية البشرية وتحديد أولويات الرعاية."
+                        }
+                    ]
+                },
+                {
+                    title: "Level 1: Physiological Needs",
+                    titleArabic: "المستوى 1: الاحتياجات الفسيولوجية",
+                    content: [
+                        {
+                            type: "dual-text-row",
+                            english: "<span class=\"highlight highlight-1\">Physiological needs</span> are the most basic requirements for human survival. If these needs are not met, the human body cannot function properly. These needs include air, water, food, shelter, sleep, clothing, and reproduction.",
+                            arabic: "<span class=\"highlight highlight-1\">الاحتياجات الفسيولوجية</span> هي المتطلبات الأساسية لبقاء الإنسان. إذا لم يتم تلبية هذه الاحتياجات، لا يمكن لجسم الإنسان أن يعمل بشكل صحيح. تشمل هذه الاحتياجات الهواء والماء والطعام والمأوى والنوم والملابس والتكاثر."
+                        },
+                        {
+                            type: "dual-text-row",
+                            english: "In a healthcare setting, <span class=\"highlight highlight-blood\">nurses</span> play a crucial role in meeting patients' physiological needs. This includes ensuring adequate oxygenation, nutrition, hydration, elimination, and rest.",
+                            arabic: "في بيئة الرعاية الصحية، تلعب <span class=\"highlight highlight-blood\">الممرضات</span> دورًا حاسمًا في تلبية الاحتياجات الفسيولوجية للمرضى. ويشمل ذلك ضمان الأكسجة الكافية والتغذية والترطيب والإخراج والراحة."
+                        },
+                        {
+                            type: "professor-explanation",
+                            title: "Professor's Explanation",
+                            content: "Physiological needs are biological requirements for human survival. If these needs are not met, the human body cannot function properly and will ultimately fail. According to Maslow, physiological needs are the most important of all needs and should be met first. Without meeting these basic needs, humans cannot focus on higher-level needs.",
+                            contentArabic: "الاحتياجات الفسيولوجية هي متطلبات بيولوجية لبقاء الإنسان. إذا لم يتم تلبية هذه الاحتياجات، لا يمكن لجسم الإنسان أن يعمل بشكل صحيح وسيفشل في النهاية. وفقًا لماسلو، الاحتياجات الفسيولوجية هي أهم جميع الاحتياجات ويجب تلبيتها أولاً. بدون تلبية هذه الاحتياجات الأساسية، لا يمكن للبشر التركيز على الاحتياجات ذات المستوى الأعلى."
+                        },
+                        {
+                            type: "practical-example",
+                            title: "Practical Example",
+                            content: "A post-operative patient who is experiencing pain and nausea cannot focus on learning about their home care instructions until their pain is managed and they can keep fluids down. The nurse must first address the physiological needs of pain relief and hydration before proceeding with patient education.",
+                            contentArabic: "المريض بعد الجراحة الذي يعاني من الألم والغثيان لا يمكنه التركيز على التعلم عن تعليمات الرعاية المنزلية حتى يتم إدارة ألمه ويمكنه الاحتفاظ بالسوائل. يجب على الممرضة أولاً معالجة الاحتياجات الفسيولوجية لتخفيف الألم والترطيب قبل المضي قدمًا في تعليم المريض."
+                        },
+                        {
+                            type: "doctor-note",
+                            title: "Doctor's Note",
+                            content: "In emergency medicine, the ABCs (Airway, Breathing, Circulation) represent the prioritization of physiological needs. This approach aligns with Maslow's hierarchy, emphasizing that without a patent airway, adequate breathing, and sufficient circulation, other interventions are futile. In all clinical settings, assessing and addressing physiological needs should always be the first priority.",
+                            contentArabic: "في طب الطوارئ، تمثل ABCs (المجرى الهوائي، التنفس، الدورة الدموية) تحديد أولويات الاحتياجات الفسيولوجية. يتوافق هذا النهج مع تسلسل ماسلو، مؤكدًا أنه بدون مجرى هوائي مفتوح، وتنفس كافٍ، ودورة دموية كافية، تكون التدخلات الأخرى عبثية. في جميع البيئات السريرية، يجب أن تكون تقييم ومعالجة الاحتياجات الفسيولوجية دائمًا الأولوية الأولى."
+                        }
+                    ]
+                },
+                {
+                    title: "Level 2: Safety and Security Needs",
+                    titleArabic: "المستوى 2: احتياجات الأمان والأمان",
+                    content: [
+                        {
+                            type: "dual-text-row",
+                            english: "<span class=\"highlight highlight-3\">Safety and security needs</span> become important once physiological needs are fulfilled. These needs include personal security, financial security, health and well-being, and safety net against accidents/illness and their adverse impacts.",
+                            arabic: "<span class=\"highlight highlight-3\">احتياجات الأمان والأمان</span> تصبح مهمة بمجرد إشباع الاحتياجات الفسيولوجية. تشمل هذه الاحتياجات الأمان الشخصي، والأمان المالي، والصحة والرفاهية، وشبكة الأمان ضد الحوادث/المرض وتأثيراتها الضارة."
+                        },
+                        {
+                            type: "dual-text-row",
+                            english: "In healthcare settings, <span class=\"highlight highlight-blue\">safety needs</span> include both physical safety (preventing falls, infections, medication errors) and psychological safety (feeling secure in the care environment).",
+                            arabic: "في بيئات الرعاية الصحية، تشمل <span class=\"highlight highlight-blue\">احتياجات الأمان</span> كل من الأمان الجسدي (منع السقوط، والعدوى، وأخطاء الأدوية) والأمان النفسي (الشعور بالأمان في بيئة الرعاية)."
+                        },
+                        {
+                            type: "professor-explanation",
+                            title: "Professor's Explanation",
+                            content: "Safety needs are about establishing stability and consistency in a chaotic world. These needs are mostly psychological in nature. We need the security of a home and family. However, if a family is dysfunctional, a person cannot move to the next level because they are constantly concerned for their safety. Love and belonging have to wait until they are no longer cringing in fear.",
+                            contentArabic: "احتياجات الأمان تدور حول إرساء الاستقرار والاتساق في عالم فوضوي. هذه الاحتياجات ذات طبيعة نفسية في الغالب. نحن بحاجة إلى أمان المنزل والأسرة. ومع ذلك، إذا كانت الأسرة غير فعالة، لا يمكن للشخص الانتقال إلى المستوى التالي لأنهم قلقون باستمرار لأمانهم. يجب أن ينتظر الحب والانتماء حتى يتوقفون عن الارتعاش من الخوف."
+                        },
+                        {
+                            type: "practical-example",
+                            title: "Practical Example",
+                            content: "An elderly patient who is afraid of falling may limit their mobility, which can lead to complications like blood clots or pneumonia. A nurse can address this safety need by ensuring the environment is free of hazards, providing assistive devices, and teaching safe mobility techniques. Once the patient feels safer, they may be more willing to move around, preventing complications.",
+                            contentArabic: "مريض مسن يخشى السقوط قد يحد من حركته، مما يمكن أن يؤدي إلى مضاعفات مثل جلطات الدم أو الالتهاب الرئوي. يمكن للممرضة معالجة هذه الحاجة للأمان عن طريق ضمان خلو البيئة من المخاطر، وتوفير الأجهزة المساعدة، وتعليم تقنيات الحركة الآمنة. بمجرد أن يشعر المريض بأمان أكبر، قد يكون أكثر استعدادًا للتحرك، مما يمنع المضاعفات."
+                        },
+                        {
+                            type: "doctor-note",
+                            title: "Doctor's Note",
+                            content: "Patient safety is a major focus in modern healthcare. Initiatives like fall prevention programs, medication safety protocols, and infection control measures all address patients' safety needs. Additionally, creating a psychologically safe environment where patients feel comfortable asking questions and expressing concerns is essential for quality care and positive health outcomes.",
+                            contentArabic: "سلامة المريض هي محور رئيسي في الرعاية الصحية الحديثة. المبادرات مثل برامج منع السقوط، وبروتوكولات سلامة الأدوية، وتدابير مكافحة العدوى تعالج جميع احتياجات أمان المرضى. بالإضافة إلى ذلك، إنشاء بيئة نفسية آمنة حيث يشعر المرضى بالراحة في طرح الأسئلة والتعبير عن المخاوف أمر ضروري للرعاية الجيدة والنتائج الصحية الإيجابية."
+                        }
+                    ]
+                },
+                {
+                    title: "Level 3: Love and Belonging Needs",
+                    titleArabic: "المستوى 3: احتياجات الحب والانتماء",
+                    content: [
+                        {
+                            type: "dual-text-row",
+                            english: "<span class=\"highlight highlight-4\">Love and belonging needs</span> emerge after physiological and safety needs have been fulfilled. These needs involve interpersonal relationships and feelings of belongingness. Humans have a desire to belong to groups: clubs, work groups, religious groups, family, etc.",
+                            arabic: "<span class=\"highlight highlight-4\">احتياجات الحب والانتماء</span> تظهر بعد إشباع الاحتياجات الفسيولوجية والأمان. تتضمن هذه الاحتياجات العلاقات الشخصية ومشاعر الانتماء. البشر لديهم رغبة في الانتماء إلى المجموعات: الأندية، ومجموعات العمل، والمجموعات الدينية، والأسرة، إلخ."
+                        },
+                        {
+                            type: "dual-text-row",
+                            english: "In healthcare, <span class=\"highlight highlight-pink\">belonging needs</span> can be addressed through family involvement, support groups, and therapeutic relationships with healthcare providers.",
+                            arabic: "في الرعاية الصحية، يمكن معالجة <span class=\"highlight highlight-pink\">احتياجات الانتماء</span> من خلال مشاركة الأسرة، ومجموعات الدعم، والعلاقات العلاجية مع مقدمي الرعاية الصحية."
+                        },
+                        {
+                            type: "professor-explanation",
+                            title: "Professor's Explanation",
+                            content: "According to Maslow, humans need to feel a sense of belonging and acceptance among their social groups. These groups can be small (like a family) or large (like a community or nation). When these needs are not met, people are more susceptible to loneliness, social anxiety, and depression. The need for interpersonal relationships motivates behavior.",
+                            contentArabic: "وفقًا لماسلو، يحتاج البشر إلى الشعور بالانتماء والقبول بين مجموعاتهم الاجتماعية. يمكن أن تكون هذه المجموعات صغيرة (مثل الأسرة) أو كبيرة (مثل مجتمع أو أمة). عندما لا يتم تلبية هذه الاحتياجات، يكون الناس أكثر عرضة للوحدة، والقلق الاجتماعي، والاكتئاب. الحاجة للعلاقات الشخصية تحفز السلوك."
+                        },
+                        {
+                            type: "practical-example",
+                            title: "Practical Example",
+                            content: "A patient in a long-term care facility who has lost their spouse may experience profound loneliness. A nurse can address this need by facilitating visits from family and friends, encouraging participation in group activities, and spending extra time providing emotional support. These interventions help fulfill the patient's need for love and belonging.",
+                            contentArabic: "مريض في منزل رعاية طويلة الأجل فقد زوجته قد يعاني من وحدة عميقة. يمكن للممرضة معالجة هذه الحاجة عن طريق تسهيل زيارات العائلة والأصدقاء، وتشجيع المشاركة في الأنشطة الجماعية، وقضاء وقت إضافي في تقديم الدعم العاطفي. تساعد هذه التدخلات على تلبية حاجة المريض للحب والانتماء."
+                        },
+                        {
+                            type: "doctor-note",
+                            title: "Doctor's Note",
+                            content: "Social isolation has been linked to numerous negative health outcomes, including increased mortality, depression, and cognitive decline. Healthcare providers should assess patients' social support systems and address barriers to social connection. This may include referring patients to community resources, support groups, or mental health services when needed.",
+                            contentArabic: "تم ربط العزلة الاجتماعية بالعديد من النتائج الصحية السلبية، بما في ذلك زيادة الوفيات، والاكتئاب، والتدهور المعرفي. يجب على مقدمي الرعاية الصحية تقييم أنظمة الدعم الاجتماعي للمرضى ومعالجة الحواجز أمام الاتصال الاجتماعي. قد يشمل ذلك إحالة المرضى إلى موارد المجتمع، أو مجموعات الدعم، أو خدمات الصحة النفسية عند الحاجة."
+                        }
+                    ]
+                },
+                {
+                    title: "Level 4: Self-Esteem Needs",
+                    titleArabic: "المستوى 4: احتياجات تقدير الذات",
+                    content: [
+                        {
+                            type: "dual-text-row",
+                            english: "<span class=\"highlight highlight-5\">Self-esteem needs</span> become prominent once the first three levels of needs are met. Maslow classified these needs into two categories: (a) esteem for oneself (dignity, achievement, mastery, independence) and (b) the desire for reputation or respect from others (status, prestige).",
+                            arabic: "<span class=\"highlight highlight-5\">احتياجات تقدير الذات</span> تصبح بارزة بمجرد تلبية المستويات الثلاثة الأولى من الاحتياجات. صنف ماسلو هذه الاحتياجات إلى فئتين: (أ) تقدير الذات (الكرامة، والإنجاز، والإتقان، والاستقلالية) و (ب) الرغبة في السمعة أو الاحترام من الآخرين (المكانة، والهيبة)."
+                        },
+                        {
+                            type: "dual-text-row",
+                            english: "In nursing practice, <span class=\"highlight highlight-purple\">self-esteem</span> can be enhanced by promoting independence, recognizing accomplishments, and treating patients with dignity and respect.",
+                            arabic: "في ممارسة التمريض، يمكن تعزيز <span class=\"highlight highlight-purple\">تقدير الذات</span> عن طريق تعزيز الاستقلالية، والاعتراف بالإنجازات، ومعاملة المرضى بالكرامة والاحترام."
+                        },
+                        {
+                            type: "professor-explanation",
+                            title: "Professor's Explanation",
+                            content: "Maslow indicated that the need for respect or reputation is most important for children and adolescents and precedes real self-esteem or dignity. As we grow older, we gain wisdom and our need for reputation decreases while our need for self-respect increases. When these needs are satisfied, the person feels self-confident and valuable as a person in the world. When these needs are frustrated, the person feels inferior, weak, helpless, and worthless.",
+                            contentArabic: "أشار ماسلو إلى أن الحاجة للاحترام أو السمعة هي الأهم للأطفال والمراهقين وتسبق تقدير الذات الحقيقي أو الكرامة. مع تقدمنا في العمر، نكتسب الحكمة وتقل حاجتنا للسمعة بينما تزداد حاجتنا للاحترام الذاتي. عندما يتم إشباع هذه الاحتياجات، يشعر الشخص بالثقة بالنفس والقيمة كشخص في العالم. عندما يتم إحباط هذه الاحتياجات، يشعر الشخص بالنقص والضعف والعجز وعدم القيمة."
+                        },
+                        {
+                            type: "practical-example",
+                            title: "Practical Example",
+                            content: "A patient who has had a stroke and is relearning how to perform self-care activities may feel frustrated and worthless. A nurse can enhance the patient's self-esteem by breaking tasks into small, achievable steps, celebrating each accomplishment, and encouraging independence. This approach helps the patient regain confidence and feel valued.",
+                            contentArabic: "مريض أصيب بجلطة دماغية ويعيد تعلم كيفية أداء أنشطة الرعاية الذاتية قد يشعر بالإحباط وعدم القيمة. يمكن للممرضة تعزيز تقدير الذات للمريض عن طريق تقسيم المهام إلى خطوات صغيرة قابلة للتحقيق، والاحتفال بكل إنجاز، وتشجيع الاستقلالية. هذا النهج يساعد المريض على استعادة الثقة والشعور بالقيمة."
+                        },
+                        {
+                            type: "doctor-note",
+                            title: "Doctor's Note",
+                            content: "Chronic illness and disability can significantly impact a person's self-esteem. Healthcare providers should be mindful of how they communicate with patients, using empowering language and focusing on abilities rather than limitations. Referral to occupational therapy, physical therapy, or counseling may be beneficial for patients struggling with self-esteem issues related to their health condition.",
+                            contentArabic: "يمكن أن يؤثر المرض المزمن والإعاقة بشكل كبير على تقدير الذات للشخص. يجب على مقدمي الرعاية الصحية أن يكونوا مدركين لكيفية تواصلهم مع المرضى، باستخدام لغة تمكينية والتركيز على القدرات بدلاً من القيود. قد يكون الإحالة إلى العلاج الوظيفي، أو العلاج الطبيعي، أو الاستشارة مفيدة للمرضى الذين يعانون من مشاكل تقدير الذات المتعلقة بحالتهم الصحية."
+                        }
+                    ]
+                },
+                {
+                    title: "Level 5: Self-Actualization Needs",
+                    titleArabic: "المستوى 5: احتياجات تحقيق الذات",
+                    content: [
+                        {
+                            type: "dual-text-row",
+                            english: "<span class=\"highlight highlight-1\">Self-actualization</span> is the highest level in Maslow's hierarchy. It refers to the realization of a person's potential, self-fulfillment, seeking personal growth, and having peak experiences. According to Maslow, this level is achieved by only a small percentage of the world's population.",
+                            arabic: "<span class=\"highlight highlight-1\">تحقيق الذات</span> هو أعلى مستوى في تسلسل ماسلو. يشير إلى إمكانات الشخص وتحقيق الذات والسعي للنمو الشخصي وتجارب الذروة. وفقًا لماسلو، يتم تحقيق هذا المستوى من قبل نسبة صغيرة فقط من سكان العالم."
+                        },
+                        {
+                            type: "dual-text-row",
+                            english: "In healthcare, <span class=\"highlight highlight-green\">self-actualization</span> might involve helping patients achieve their personal health goals, find meaning in their illness experience, or pursue activities that bring them joy and fulfillment despite health limitations.",
+                            arabic: "في الرعاية الصحية، قد يتضمن <span class=\"highlight highlight-green\">تحقيق الذات</span> مساعدة المرضى على تحقيق أهدافهم الصحية الشخصية، أو إيجاد معنى في تجربة المرض، أو متابعة الأنشطة التي تجلب لهم السعادة والرضا على الرغم من قيود الصحة."
+                        },
+                        {
+                            type: "professor-explanation",
+                            title: "Professor's Explanation",
+                            content: "Self-actualization is not a static state but rather an ongoing process. Maslow described self-actualized people as those who are self-aware, caring, and wise. They have a realistic perception of themselves and others, a strong sense of purpose, and the ability to enjoy the present moment. They are also creative, spontaneous, and have a good sense of humor. These individuals are problem-centered rather than self-centered and have a strong sense of ethics.",
+                            contentArabic: "تحقيق الذات ليس حالة ثابتة بل عملية مستمرة. وصف ماسلو الأفراد الذين حققوا ذاتهم بأنهم واعون بالذات، واهتمون، وحكماء. لديهم إدراك واقعي لأنفسهم والآخرين، وشعور قوي بالهدف، والقدرة على الاستمتاع باللحظة الحالية. هم أيضًا مبدعون، وعفويون، ولديهم حس فكاهي جيد. هؤلاء الأفراد مركزون على المشكلة بدلاً من مركزين على الذات ولديهم حس قوي بالأخلاق."
+                        },
+                        {
+                            type: "practical-example",
+                            title: "Practical Example",
+                            content: "A patient with a chronic illness who has adapted to their condition and found new ways to contribute to society might be demonstrating self-actualization. For example, a patient with diabetes who becomes a peer educator for others with the same condition, or a person with a disability who becomes an advocate for accessibility rights. Nurses can support self-actualization by helping patients identify their strengths and find meaningful activities despite their health challenges.",
+                            contentArabic: "مريض بمرض مزمن تكيف مع حالته ووجد طرقًا جديدة للمساهمة في المجتمع قد يوضح تحقيق الذات. على سبيل المثال، مريض بالسكري يصبح مدرسًا نظيرًا للآخرين بنفس الحالة، أو شخص ذو إعاقة يصبح مدافعًا عن حقوق الوصول. يمكن للممرضين دعم تحقيق الذات عن طريق مساعدة المرضى على تحديد نقاط قوتهم وإيجاد أنشطة ذات معنى على الرغم من تحدياتهم الصحية."
+                        },
+                        {
+                            type: "doctor-note",
+                            title: "Doctor's Note",
+                            content: "While self-actualization is the highest level in Maslow's hierarchy, it's important to recognize that not everyone will reach this level, and that's okay. The goal of healthcare is not necessarily to help every patient achieve self-actualization, but rather to help each patient reach their highest possible level of functioning and well-being. This may mean focusing on meeting basic needs for some patients while supporting growth and self-fulfillment for others.",
+                            contentArabic: "على الرغم من أن تحقيق الذات هو أعلى مستوى في تسلسل ماسلو، من المهم الاعتراف بأن ليس الجميع سيصلون إلى هذا المستوى، وهذا مقبول. هدف الرعاية الصحية ليس بالضرورة مساعدة كل مريض على تحقيق الذات، بل مساعدة كل مريض على الوصول إلى أعلى مستوى ممكن من الأداء والرفاهية. قد يعني هذا التركيز على تلبية الاحتياجات الأساسية لبعض المرضى مع دعم النمو وتحقيق الذات للآخرين."
+                        }
+                    ]
+                }
+            ];
+            
+            // Comparison content
+            const comparisonContent = [
+                {
+                    title: "Physiological vs. Safety Needs",
+                    titleArabic: "الاحتياجات الفسيولوجية مقابل احتياجات الأمان",
+                    rows: [
+                        {
+                            aspect: "Priority",
+                            aspectArabic: "الأولوية",
+                            item1: "First level - must be met before other needs",
+                            item1Arabic: "المستوى الأول - يجب تلبيته قبل الاحتياجات الأخرى",
+                            item2: "Second level - addressed after physiological needs",
+                            item2Arabic: "المستوى الثاني - يتم معالجته بعد الاحتياجات الفسيولوجية"
+                        },
+                        {
+                            aspect: "Examples",
+                            aspectArabic: "أمثلة",
+                            item1: "Air, water, food, shelter, sleep, elimination",
+                            item1Arabic: "الهواء، الماء، الطعام، المأوى، النوم، الإخراج",
+                            item2: "Physical safety, security, stability, order",
+                            item2Arabic: "الأمان الجسدي، الأمان، الاستقرار، النظام"
+                        },
+                        {
+                            aspect: "Nursing Interventions",
+                            aspectArabic: "التدخلات التمريضية",
+                            item1: "Oxygen therapy, nutrition assistance, hygiene care",
+                            item1Arabic: "علاج الأكسجين، مساعدة التغذية، الرعاية الصحية",
+                            item2: "Fall prevention, infection control, environmental safety",
+                            item2Arabic: "منع السقوط، مكافحة العدوى، سلامة البيئة"
+                        },
+                        {
+                            aspect: "Consequences of Unmet Needs",
+                            aspectArabic: "عواقب الاحتياجات غير المشبعة",
+                            item1: "Death, severe illness, physical deterioration",
+                            item1Arabic: "الموت، المرض الشديد، التدهور الجسدي",
+                            item2: "Anxiety, fear, insecurity, stress",
+                            item2Arabic: "القلق، الخوف، عدم الأمان، الإجهاد"
+                        }
+                    ]
+                },
+                {
+                    title: "Love/Belonging vs. Self-Esteem Needs",
+                    titleArabic: "احتياجات الحب/الانتماء مقابل احتياجات تقدير الذات",
+                    rows: [
+                        {
+                            aspect: "Focus",
+                            aspectArabic: "التركيز",
+                            item1: "Connection with others, social relationships",
+                            item1Arabic: "الاتصال بالآخرين، العلاقات الاجتماعية",
+                            item2: "Self-perception, personal achievement",
+                            item2Arabic: "التصور الذاتي، الإنجاز الشخصي"
+                        },
+                        {
+                            aspect: "Examples",
+                            aspectArabic: "أمثلة",
+                            item1: "Family, friends, intimate relationships, community",
+                            item1Arabic: "الأسرة، الأصدقاء، العلاقات الحميمة، المجتمع",
+                            item2: "Recognition, respect, achievement, competence",
+                            item2Arabic: "الاعتراف، الاحترام، الإنجاز، الكفاءة"
+                        },
+                        {
+                            aspect: "Nursing Interventions",
+                            aspectArabic: "التدخلات التمريضية",
+                            item1: "Facilitate family visits, support groups, social activities",
+                            item1Arabic: "تسهيل زيارات الأسرة، مجموعات الدعم، الأنشطة الاجتماعية",
+                            item2: "Recognize accomplishments, promote independence, provide positive feedback",
+                            item2Arabic: "الاعتراف بالإنجازات، تعزيز الاستقلالية، تقديم ملاحظات إيجابية"
+                        },
+                        {
+                            aspect: "Consequences of Unmet Needs",
+                            aspectArabic: "عواقب الاحتياجات غير المشبعة",
+                            item1: "Loneliness, depression, social anxiety, isolation",
+                            item1Arabic: "الوحدة، الاكتئاب، القلق الاجتماعي، العزلة",
+                            item2: "Inferiority, low self-worth, helplessness, depression",
+                            item2Arabic: "النقص، انخفاض قيمة الذات، العجز، الاكتئاب"
+                        }
+                    ]
+                },
+                {
+                    title: "Self-Esteem vs. Self-Actualization Needs",
+                    titleArabic: "احتياجات تقدير الذات مقابل احتياجات تحقيق الذات",
+                    rows: [
+                        {
+                            aspect: "Nature",
+                            aspectArabic: "الطبيعة",
+                            item1: "Recognition from others and self-respect",
+                            item1Arabic: "الاعتراف من الآخرين واحترام الذات",
+                            item2: "Personal growth, fulfillment of potential",
+                            item2Arabic: "النمو الشخصي، تحقيق الإمكانات"
+                        },
+                        {
+                            aspect: "Examples",
+                            aspectArabic: "أمثلة",
+                            item1: "Achievement, status, recognition, respect",
+                            item1Arabic: "الإنجاز، المكانة، الاعتراف، الاحترام",
+                            item2: "Creativity, problem-solving, personal growth, peak experiences",
+                            item2Arabic: "الإبداع، حل المشكلات، النمو الشخصي، تجارب الذروة"
+                        },
+                        {
+                            aspect: "Nursing Interventions",
+                            aspectArabic: "التدخلات التمريضية",
+                            item1: "Praise, recognition, respect for patient's opinions",
+                            item1Arabic: "المديح، الاعتراف، احترام آراء المريض",
+                            item2: "Support personal goals, encourage new experiences, facilitate meaning-making",
+                            item2Arabic: "دعم الأهداف الشخصية، تشجيع التجارب الجديدة، تسهيل إيجاد المعنى"
+                        },
+                        {
+                            aspect: "Consequences of Unmet Needs",
+                            aspectArabic: "عواقب الاحتياجات غير المشبعة",
+                            item1: "Low self-confidence, inferiority, helplessness",
+                            item1Arabic: "انخفاض الثقة بالنفس، النقص، العجز",
+                            item2: "Frustration, lack of fulfillment, regret, apathy",
+                            item2Arabic: "الإحباط، نقص الرضا، الندم، اللامبالاة"
+                        }
+                    ]
+                }
+            ];
+            
+            // Important numbers content
+            const numbersContent = [
+                {
+                    number: "5",
+                    title: "Levels in Maslow's Hierarchy",
+                    titleArabic: "مستويات في تسلسل ماسلو",
+                    description: "Maslow's Hierarchy consists of five levels: Physiological, Safety, Love/Belonging, Self-Esteem, and Self-Actualization.",
+                    descriptionArabic: "يتكون تسلسل ماسلو من خمسة مستويات: فسيولوجي، وأمان، وحب/انتماء، وتقدير الذات، وتحقيق الذات.",
+                    explanation: {
+                        type: "dual-text-row",
+                        english: "The five levels in Maslow's Hierarchy are arranged in a pyramid shape, with the most basic needs at the bottom and the highest-level needs at the top. According to Maslow, individuals must satisfy lower-level needs before progressing to higher-level needs. However, in reality, people may pursue multiple needs simultaneously, and the hierarchy is not always rigid.",
+                        arabic: "المستويات الخمسة في تسلسل ماسلو مرتبة في شكل هرمي، مع الاحتياجات الأساسية في القاعدة والاحتياجات ذات المستوى الأعلى في القمة. وفقًا لماسلو، يجب على الأفراد إشباع الاحتياجات ذات المستوى الأدنى قبل التقدم إلى الاحتياجات ذات المستوى الأعلى. ومع ذلك، في الواقع، قد يسعى الناس إلى تلبية احتياجات متعددة في وقت واحد، والتسلسل ليس دائمًا صارمًا."
+                    }
+                },
+                {
+                    number: "1943",
+                    title: "Year Maslow Published His Theory",
+                    titleArabic: "عام نشر ماسلو نظريته",
+                    description: "Abraham Maslow first published his hierarchy of needs theory in his 1943 paper 'A Theory of Human Motivation.'",
+                    descriptionArabic: "نشر أبراهام ماسلو نظريته لتسلسل الاحتياجات لأول مرة في ورقته البحثية عام 1943 بعنوان 'نظرية الدافعية البشرية'.",
+                    explanation: {
+                        type: "dual-text-row",
+                        english: "Maslow first introduced his hierarchy of needs in his 1943 paper 'A Theory of Human Motivation' published in Psychological Review. He later expanded on the theory in his 1954 book 'Motivation and Personality.' The theory has since become one of the most popular theories in psychology and has been applied in various fields including education, management, and healthcare.",
+                        arabic: "قدم ماسلو لأول مرة تسلسل احتياجاته في ورقته البحثية عام 1943 بعنوان 'نظرية الدافعية البشرية' المنشورة في Psychological Review. وسع لاحقًا النظرية في كتابه عام 1954 'الدافعية والشخصية'. منذ ذلك الحين، أصبحت النظرية واحدة من أكثر النظريات شعبية في علم النفس وتم تطبيقها في مجالات مختلفة بما في ذلك التعليم، والإدارة، والرعاية الصحية."
+                    }
+                },
+                {
+                    number: "1-2%",
+                    title: "Percentage of People Who Reach Self-Actualization",
+                    titleArabic: "نسبة الأشخاص الذين يصلون إلى تحقيق الذات",
+                    description: "Maslow estimated that only about 1-2% of the population reaches the level of self-actualization.",
+                    descriptionArabic: "قدر ماسلو أن حوالي 1-2% فقط من السكان يصلون إلى مستوى تحقيق الذات.",
+                    explanation: {
+                        type: "dual-text-row",
+                        english: "Maslow believed that relatively few people reach self-actualization because it requires meeting all the lower-level needs first, which can be challenging in a world with many obstacles. Additionally, self-actualization involves a continuous process of growth rather than a final destination. Maslow studied individuals he considered self-actualized, including Albert Einstein, Eleanor Roosevelt, and Abraham Lincoln, to identify common characteristics.",
+                        arabic: "اعتقد ماسلو أن عددًا قليلاً نسبيًا من الناس يصلون إلى تحقيق الذات لأنه يتطلب تلبية جميع الاحتياجات ذات المستوى الأدنى أولاً، مما يمكن أن يكون تحديًا في عالم به العديد من العقبات. بالإضافة إلى ذلك، يتضمن تحقيق الذات عملية نمو مستمرة بدلاً من وجهة نهائية. درس ماسلو الأفراد الذين اعتبرهم حققوا ذاتهم، بما في ذلك ألبرت أينشتاين، وإليانور روزفلت، وأبراهام لينكولن، لتحديد الخصائص المشتركة."
+                    }
+                },
+                {
+                    number: "15",
+                    title: "Characteristics of Self-Actualized People",
+                    titleArabic: "خصائص الأفراد الذين حققوا ذاتهم",
+                    description: "Maslow identified 15 characteristics of self-actualized people, including realism, acceptance, problem-centering, and creativity.",
+                    descriptionArabic: "حدد ماسلو 15 خصائص للأفراد الذين حققوا ذاتهم، بما في ذلك الواقعية، والقبول، والتركيز على المشكلة، والإبداع.",
+                    explanation: {
+                        type: "dual-text-row",
+                        english: "Maslow identified 15 characteristics of self-actualized people, including: superior perception of reality, acceptance of self, others, and nature, spontaneity, problem-centering, need for privacy, autonomy, continued freshness of appreciation, peak experiences, Gemeinschaftsgefühl (social interest), deep interpersonal relations, democratic character structure, discrimination between means and ends, philosophical sense of humor, and creativity.",
+                        arabic: "حدد ماسلو 15 خصائص للأفراد الذين حققوا ذاتهم، بما في ذلك: إدراك متفوق للواقع، وقبول الذات والآخرين والطبيعة، والعفوية، والتركيز على المشكلة، والحاجة للخصوصية، والاستقلالية، والتجدد المستمر للتقدير، وتجارب الذروة، وGemeinschaftsgefühl (الاهتمام الاجتماعي)، والعلاقات الشخصية العميقة، وهيكل الشخصية الديمقراطية، والتمييز بين الوسائل والغايات، والشعور بالفلسفة، والإبداع."
+                    }
+                },
+                {
+                    number: "72",
+                    title: "Average Life Expectancy (Years)",
+                    titleArabic: "متوسط عمر التوقع (بالسنوات)",
+                    description: "The average global life expectancy is approximately 72 years, providing time for individuals to progress through Maslow's hierarchy.",
+                    descriptionArabic: "متوسط عمر التوقع العالمي حوالي 72 عامًا، مما يوفر الوقت للأفراد للتقدم عبر تسلسل ماسلو.",
+                    explanation: {
+                        type: "dual-text-row",
+                        english: "The average global life expectancy is approximately 72 years, according to the World Health Organization. This lifespan provides individuals with the opportunity to progress through Maslow's hierarchy of needs. However, factors such as socioeconomic status, health conditions, and life circumstances can impact a person's ability to progress through the hierarchy. Nurses should consider these factors when assessing patients' needs and planning care.",
+                        arabic: "متوسط عمر التوقع العالمي حوالي 72 عامًا، وفقًا لمنظمة الصحة العالمية. يوفر هذا العمر الفرصة للأفراد للتقدم عبر تسلسل احتياجات ماسلو. ومع ذلك، يمكن أن تؤثر عوامل مثل الوضع الاجتماعي والاقتصادي، وحالة الصحة، وظروف الحياة على قدرة الشخص على التقدم عبر التسلسل. يجب على الممرضين مراعاة هذه العوامل عند تقييم احتياجات المرضى وتخطيط الرعاية."
+                    }
+                }
+            ];
+            
+            // Final review content
+            const finalReviewContent = [
+                {
+                    title: "Maslow's Hierarchy Overview",
+                    titleArabic: "نظرة عامة على تسلسل ماسلو",
+                    english: "Maslow's Hierarchy of Needs is a motivational theory that suggests people are motivated to fulfill basic needs before moving on to more advanced needs. The hierarchy consists of five levels: Physiological, Safety, Love/Belonging, Self-Esteem, and Self-Actualization.",
+                    arabic: "تسلسل احتياجات ماسلو هي نظرية دافعية تقترح أن الناس مدفوعون لإشباع الاحتياجات الأساسية قبل الانتقال إلى الاحتياجات الأكثر تقدمًا. يتكون التسلسل من خمسة مستويات: فسيولوجي، وأمان، وحب/انتماء، وتقدير الذات، وتحقيق الذات.",
+                    explanation: "Understanding Maslow's Hierarchy is essential for nurses as it provides a framework for prioritizing patient care. By recognizing which needs are most pressing, nurses can address the most critical issues first, ensuring that patients receive appropriate care that supports their overall well-being.",
+                    explanationArabic: "فهم تسلسل ماسلو ضروري للممرضين حيث يوفر إطارًا لتحديد أولويات رعاية المريض. من خلال الاعتراف بالاحتياجات الأكثر إلحاحًا، يمكن للممرضين معالجة القضايا الأكثر أهمية أولاً، مما يضمن حصول المرضى على رعاية مناسبة تدعم رفاهيتهم العامة."
+                },
+                {
+                    title: "Application in Nursing Practice",
+                    titleArabic: "التطبيق في ممارسة التمريض",
+                    english: "Maslow's Hierarchy can be applied in nursing practice to prioritize care, understand patient behavior, and develop comprehensive care plans. Nurses should assess which needs are unmet and address them in order of priority.",
+                    arabic: "يمكن تطبيق تسلسل ماسلو في ممارسة التمريض لتحديد أولويات الرعاية، وفهم سلوك المريض، وتطوير خطط رعاية شاملة. يجب على الممرضين تقييم الاحتياجات غير المشبعة ومعالجتها حسب الأولوية.",
+                    explanation: "In clinical practice, nurses often use Maslow's hierarchy implicitly when prioritizing care. For example, a patient with breathing difficulties (physiological need) would be attended to before a patient who needs education about their condition (higher-level need). This approach ensures that life-threatening issues are addressed first.",
+                    explanationArabic: "في الممارسة السريرية، يستخدم الممرضون غالبًا تسلسل ماسلو ضمنيًا عند تحديد أولويات الرعاية. على سبيل المثال، المريض الذي يعاني من صعوبات في التنفس (حاجة فسيولوجية) سيتم الاهتمام به قبل المريض الذي يحتاج إلى تعليم حول حالته (حاجة ذات مستوى أعلى). يضمن هذا النهج معالجة القضايا المهددة للحياة أولاً."
+                },
+                {
+                    title: "Limitations and Criticisms",
+                    titleArabic: "القيود والانتقادات",
+                    english: "Maslow's Hierarchy has been criticized for its cultural bias, lack of empirical evidence, and rigid structure. Not everyone follows the hierarchy exactly as described, and cultural factors can influence which needs are prioritized.",
+                    arabic: "تم انتقاد تسلسل ماسلو لتحيزه الثقافي، ونقص الأدلة التجريبية، وهيكله الصارم. لا يتبع الجميع التسلسل بالضبط كما هو موصوف، ويمكن للعوامل الثقافية أن تؤثر على الاحتياجات التي يتم إعطاؤها الأولوية.",
+                    explanation: "Despite its limitations, Maslow's Hierarchy remains a valuable tool for understanding human motivation and prioritizing care. Nurses should use it as a general guide rather than a rigid framework, recognizing that individual patients may have unique needs and priorities that don't fit neatly into the hierarchy.",
+                    explanationArabic: "على الرغم من قيوده، يظل تسلسل ماسلو أداة قيمة لفهم الدافعية البشرية وتحديد أولويات الرعاية. يجب على الممرضين استخدامه كدليل عام بدلاً من إطار صارم، مع الاعتراف بأن المرضى الأفراد قد يكون لديهم احتياجات وأولويات فريدة لا تناسب بشكل جيد في التسلسل."
+                },
+                {
+                    title: "Contemporary Applications",
+                    titleArabic: "التطبيقات المعاصرة",
+                    english: "Maslow's Hierarchy continues to be applied in various fields including healthcare, education, and business. In healthcare, it informs patient-centered care approaches and helps healthcare providers understand the holistic needs of patients.",
+                    arabic: "يستمر تطبيق تسلسل ماسلو في مجالات مختلفة بما في ذلك الرعاية الصحية، والتعليم، والأعمال. في الرعاية الصحية، يبلغ نهج الرعاية المتمركزة حول المريض ويساعد مقدمي الرعاية الصحية على فهم الاحتياجات الشاملة للمرضى.",
+                    explanation: "Contemporary healthcare has embraced holistic approaches that recognize the interconnectedness of physical, psychological, social, and spiritual needs. Maslow's Hierarchy provides a framework for understanding these connections and ensuring that care addresses all aspects of a patient's well-being, not just their physical symptoms.",
+                    explanationArabic: "احتضنت الرعاية الصحية المعاصرة نهجًا شاملة تعترف بالترابط بين الاحتياجات الجسدية والنفسية والاجتماعية والروحية. يوفر تسلسل ماسلو إطارًا لفهم هذه الروابط وضمان أن تعالج الرعاية جميع جوانب رفاهية المريض، وليس فقط أعراضهم الجسدية."
+                },
+                {
+                    title: "Key Takeaways for Nurses",
+                    titleArabic: "النقاط الرئيسية للممرضين",
+                    english: "Nurses should use Maslow's Hierarchy as a tool for prioritizing care, but remain flexible in its application. The hierarchy provides a framework for understanding patient needs but should not be applied rigidly. Individual patient circumstances and cultural factors must always be considered.",
+                    arabic: "يجب على الممرضين استخدام تسلسل ماسلو كأداة لتحديد أولويات الرعاية، ولكن يظلون مرنين في تطبيقه. يوفر التسلسل إطارًا لفهم احتياجات المريض ولكن يجب عدم تطبيقه بشكل صارم. يجب دائمًا مراعاة ظروف المريض الفردية والعوامل الثقافية.",
+                    explanation: "By understanding Maslow's Hierarchy, nurses can provide more holistic, patient-centered care that addresses not just physical needs but also psychological, social, and spiritual needs. This comprehensive approach to care can improve patient outcomes, satisfaction, and overall well-being.",
+                    explanationArabic: "من خلال فهم تسلسل ماسلو، يمكن للممرضين تقديم رعاية أكثر شمولية ومتمركزة حول المريض تعالج ليس فقط الاحتياجات الجسدية ولكن أيضًا الاحتياجات النفسية والاجتماعية والروحية. يمكن أن يحسن هذا النهج الشامل للرعاية نتائج المريض والرضا والرفاهية العامة."
+                }
+            ];
+            
+            // Exam tricks content
+            const examTricksContent = [
+                {
+                    title: "Understanding the Hierarchy Order",
+                    titleArabic: "فهم ترتيب التسلسل",
+                    analysis: {
+                        english: "Remember the hierarchy order from bottom to top: Physiological (basic survival needs), Safety (security and stability), Love/Belonging (social connections), Self-Esteem (respect and recognition), and Self-Actualization (personal growth). A mnemonic to remember this is 'Please Send Love, Sweet Self' (Physiological, Safety, Love, Self-Esteem, Self-Actualization).",
+                        arabic: "تذكر ترتيب التسلسل من القاعدة إلى القمة: فسيولوجي (احتياجات البقاء الأساسية)، والأمان (الأمان والاستقرار)، والحب/الانتماء (الاتصالات الاجتماعية)، وتقدير الذات (الاحترام والاعتراف)، وتحقيق الذات (النمو الشخصي). مساعدة mnemonics لتذكر هذا هو 'Please Send Love, Sweet Self' (فسيولوجي، أمان، حب، تقدير الذات، تحقيق الذات)."
+                    },
+                    tip: "When answering questions about priority of care, always start with physiological needs, then safety, then love/belonging, then self-esteem, and finally self-actualization. This hierarchy is the foundation of nursing prioritization.",
+                    tipArabic: "عند الإجابة على أسئلة حول أولوية الرعاية، ابدأ دائمًا بالاحتياجات الفسيولوجية، ثم الأمان، ثم الحب/الانتماء، ثم تقدير الذات، وأخيرًا تحقيق الذات. هذا التسلسل هو أساس تحديد أولويات التمريض."
+                },
+                {
+                    title: "Recognizing Level-Specific Needs",
+                    titleArabic: "التعرف على الاحتياجات الخاصة بالمستوى",
+                    analysis: {
+                        english: "Practice identifying which level of Maslow's hierarchy specific needs belong to. For example, pain management is physiological, fall prevention is safety, family visits are love/belonging, praise for accomplishments is self-esteem, and pursuing personal goals is self-actualization. Being able to quickly categorize needs will help you answer exam questions more efficiently.",
+                        arabic: "تدرب على تحديد مستوى تسلسل ماسلو الذي تنتمي إليه الاحتياجات المحددة. على سبيل المثال، إدارة الألم فسيولوجية، ومنع السقوط أمان، وزيارات الأسرة حب/انتماء، والمديح للإنجازات تقدير الذات، ومتابعة الأهداف الشخصية تحقيق الذات. القدرة على تصنيف الاحتياجات بسرعة ستساعدك على الإجابة على أسئلة الامتحان بكفاءة أكبر."
+                    },
+                    tip: "Look for keywords in exam questions that indicate specific levels. Words like 'survival,' 'basic,' or 'life-threatening' usually indicate physiological needs. Words like 'security,' 'safe,' or 'stable' indicate safety needs. Words like 'family,' 'friends,' or 'social' indicate love/belonging needs.",
+                    tipArabic: "ابحث عن كلمات رئيسية في أسئلة الامتحان تشير إلى مستويات محددة. كلمات مثل 'البقاء'، 'أساسي'، أو 'مهدد للحياة' تشير عادة إلى الاحتياجات الفسيولوجية. كلمات مثل 'الأمان'، 'آمن'، أو 'مستقر' تشير إلى احتياجات الأمان. كلمات مثل 'الأسرة'، 'الأصدقاء'، أو 'اجتماعي' تشير إلى احتياجات الحب/الانتماء."
+                },
+                {
+                    title: "Application Questions Strategy",
+                    titleArabic: "استراتيجية أسئلة التطبيق",
+                    analysis: {
+                        english: "Application questions often present a scenario and ask which need is most important or which nursing intervention is most appropriate. Start by identifying all the needs mentioned in the scenario, then prioritize them according to Maslow's hierarchy. Remember that in emergency situations, physiological needs always take priority, but in non-emergency situations, the hierarchy may be more flexible.",
+                        arabic: "غالبًا ما تقدم أسئلة التطبيق سيناريو وتسأل عن الاحتياج الأكثر أهمية أو التدخل التمريضي الأكثر ملاءمة. ابدأ بتحديد جميع الاحتياجات المذكورة في السيناريو، ثم حدد أولوياتها وفقًا لتسلسل ماسلو. تذكر أنه في حالات الطوارئ، تأخذ الاحتياجات الفسيولوجية دائمًا الأولوية، ولكن في الحالات غير الطارئة، قد يكون التسلسل أكثر مرونة."
+                    },
+                    tip: "When answering application questions, consider the context. A post-operative patient's priority might be pain management (physiological), while a patient preparing for discharge might prioritize education about their condition (higher-level need). Always consider the specific situation when determining priority.",
+                    tipArabic: "عند الإجابة على أسئلة التطبيق، ضع في اعتبارك السياق. قد تكون أولوية المريض بعد الجراحة هي إدارة الألم (فسيولوجي)، بينما قد يركز المريض الذي يستعد للخروج على التعليم حول حالته (حاجة ذات مستوى أعلى). ضع دائمًا في اعتبارك الموقف المحدد عند تحديد الأولوية."
+                },
+                {
+                    title: "Understanding Limitations",
+                    titleArabic: "فهم القيود",
+                    analysis: {
+                        english: "Be prepared for questions that test your understanding of the limitations of Maslow's theory. These might ask about cultural differences, exceptions to the hierarchy, or criticisms of the theory. Remember that the hierarchy is not rigid and that people may pursue multiple needs simultaneously. Cultural factors can also influence which needs are prioritized.",
+                        arabic: "كن مستعدًا لأسئلة تختبر فهمك لقيود نظرية ماسلو. قد تسأل هذه عن الاختلافات الثقافية، أو استثناءات التسلسل، أو انتقادات النظرية. تذكر أن التسلسل ليس صارمًا وأن الناس قد يسعون لتلبية احتياجات متعددة في وقت واحد. يمكن أن تؤثر العوامل الثقافية أيضًا على الاحتياجات التي يتم إعطاؤها الأولوية."
+                    },
+                    tip: "When answering questions about limitations, acknowledge that Maslow's theory is a useful framework but not absolute. Emphasize the importance of individualized care that considers each patient's unique circumstances, cultural background, and personal priorities.",
+                    tipArabic: "عند الإجابة على أسئلة حول القيود، اعترف بأن نظرية ماسلو هي إطار مفيد ولكن ليس مطلقًا. أكد على أهمية الرعاية الفردية التي تأخذ في الاعتبار ظروف كل مريض الفريدة وخلفيته الثقافية وأولوياته الشخصية."
+                },
+                {
+                    title: "Integration with Nursing Process",
+                    titleArabic: "التكامل مع عملية التمريض",
+                    analysis: {
+                        english: "Understand how Maslow's hierarchy integrates with the nursing process (Assessment, Diagnosis, Planning, Implementation, Evaluation). During assessment, identify unmet needs at all levels. During diagnosis, prioritize problems according to the hierarchy. During planning, develop interventions to address priority needs. During implementation, carry out the interventions. During evaluation, assess whether the interventions were effective in meeting the identified needs.",
+                        arabic: "افهم كيف يتكامل تسلسل ماسلو مع عملية التمريض (التقييم، والتشخيص، والتخطيط، والتنفيذ، والتقييم). أثناء التقييم، حدد الاحتياجات غير المشبعة على جميع المستويات. أثناء التشخيص، حدد أولويات المشاكل وفقًا للتسلسل. أثناء التخطيط، طور تدخلات لمعالجة الاحتياجات ذات الأولوية. أثناء التنفيذ، قم بتنفيذ التدخلات. أثناء التقييم، قيم ما إذا كانت التدخلات فعالة في تلبية الاحتياجات المحددة."
+                    },
+                    tip: "When answering questions that integrate Maslow's hierarchy with the nursing process, always start with assessment (identifying needs), then move through each step of the nursing process in order. Make sure your answer addresses how the hierarchy informs each step of the process.",
+                    tipArabic: "عند الإجابة على أسئلة تدمج تسلسل ماسلو مع عملية التمريض، ابدأ دائمًا بالتقييم (تحديد الاحتياجات)، ثم انتقل عبر كل خطوة من خطوات عملية التمريض بالترتيب. تأكد من أن إجابتك تعالج كيف يبلغ التسلسل كل خطوة من العملية."
+                }
+            ];
+            
+            // Speech synthesis setup
+            function loadVoices() {
+                const voices = window.speechSynthesis.getVoices();
+                selectedUsVoice = voices.find(voice => voice.lang.startsWith('en-US')) || voices.find(voice => voice.lang.includes('US'));
+            }
+            loadVoices();
+            if (speechSynthesis.onvoiceschanged !== undefined) {
+                speechSynthesis.onvoiceschanged = loadVoices;
+            }
+            
+            // Theme toggle
+            const themeToggle = document.getElementById('theme-toggle');
+            themeToggle.addEventListener('click', () => {
+                document.body.classList.toggle('dark-mode');
+                const isDark = document.body.classList.contains('dark-mode');
+                localStorage.setItem('darkMode', isDark);
+                themeToggle.innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+            });
+            
+            // Check for saved theme preference
+            if (localStorage.getItem('darkMode') === 'true') {
+                document.body.classList.add('dark-mode');
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            }
+            
+            // Navigation
+            const navLinks = document.querySelectorAll('.nav-link');
+            const menuToggle = document.getElementById('menu-toggle');
+            const navContainer = document.getElementById('nav-container');
+            
+            menuToggle.addEventListener('click', () => {
+                menuToggle.classList.toggle('open');
+                navContainer.classList.toggle('open');
+                
+                // Show interactive message when menu is opened
+                if (navContainer.classList.contains('open')) {
+                    showMessage();
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetPage = link.getAttribute('data-page');
+                    
+                    // Close the menu after clicking a link
+                    menuToggle.classList.remove('open');
+                    navContainer.classList.remove('open');
+                    
+                    // Stop all timers when navigating away
+                    clearInterval(quizTimerInterval);
+                    clearInterval(wordsTimerInterval);
+                    quizTimerInterval = null;
+                    wordsTimerInterval = null;
+                    
+                    // Hide all pages
+                    document.querySelectorAll('.page').forEach(p => p.classList.remove('active-page'));
+                    
+                    // Show target page
+                    document.getElementById(targetPage).classList.add('active-page');
+                    
+                    // Update nav active state
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    link.classList.add('active');
+                    
+                    // Start timer for the specific page if it's the first visit
+                    if (targetPage === 'page6' && !quizTimerInterval) {
+                        startQuizTimer();
+                    }
+                    if (targetPage === 'page8' && !wordsTimerInterval) {
+                        startWordsTimer();
+                    }
+                });
+            });
+            
+            // Interactive message function
+            function showMessage() {
+                const message = document.getElementById('interactive-message');
+                message.style.display = 'block';
+                
+                // Auto-hide after 3 seconds
+                setTimeout(() => {
+                    message.style.display = 'none';
+                }, 3000);
+            }
+            
+            // Close message button
+            document.getElementById('message-close').addEventListener('click', () => {
+                document.getElementById('interactive-message').style.display = 'none';
+            });
+            
+            // Flashcard functionality
+            const flashcard = document.getElementById('flashcard');
+            const cardFrontText = document.getElementById('card-front-text');
+            const cardBack = document.getElementById('card-back');
+            const currentCardSpan = document.getElementById('current-card');
+            const totalCardsSpan = document.getElementById('total-cards');
+            
+            function updateFlashcard() {
+                const card = flashcardsData[currentCardIndex];
+                cardFrontText.textContent = card.front;
+                cardBack.innerHTML = `
+                    <h2>${card.back.term}</h2>
+                    <h3>(${card.back.translation})</h3>
+                    <div class="dual-text-row">
+                        <div class="english-side">${card.back.english}</div>
+                        <div class="arrow-separator"></div>
+                        <div class="arabic-side">${card.back.arabic}</div>
+                    </div>
+                `;
+                currentCardSpan.textContent = currentCardIndex + 1;
+                totalCardsSpan.textContent = flashcardsData.length;
+                flashcard.classList.remove('flipped');
+            }
+            
+            function speakFlashcard() {
+                if (flashcardsData.length === 0) return;
+                const card = flashcardsData[currentCardIndex];
+                if ('speechSynthesis' in window) {
+                    window.speechSynthesis.cancel();
+                    const utterance = new SpeechSynthesisUtterance(card.back.term);
+                    if (selectedUsVoice) { 
+                        utterance.voice = selectedUsVoice; 
+                    }
+                    utterance.lang = 'en-US';
+                    utterance.rate = 0.9;
+                    window.speechSynthesis.speak(utterance);
+                } else {
+                    alert("Sorry, your browser doesn't support text-to-speech.");
+                }
+            }
+            
+            document.getElementById('prev-card').addEventListener('click', () => { 
+                if (currentCardIndex > 0) { 
+                    currentCardIndex--; 
+                    updateFlashcard(); 
+                } 
+            });
+            
+            document.getElementById('next-card').addEventListener('click', () => { 
+                if (currentCardIndex < flashcardsData.length - 1) { 
+                    currentCardIndex++; 
+                    updateFlashcard(); 
+                } 
+            });
+            
+            document.getElementById('flip-card').addEventListener('click', () => { 
+                flashcard.classList.toggle('flipped'); 
+            });
+            
+            document.getElementById('speak-card').addEventListener('click', speakFlashcard);
+            
+            flashcard.addEventListener('click', (e) => { 
+                if (e.target.tagName !== 'BUTTON') { 
+                    flashcard.classList.toggle('flipped'); 
+                } 
+            });
+            
+            // Generate detailed explanation content
+            function generateDetailedExplanation() {
+                const container = document.getElementById('detailed-explanation');
+                container.innerHTML = '';
+                
+                detailedExplanationContent.forEach((section, index) => {
+                    const numberedItem = document.createElement('div');
+                    numberedItem.className = 'numbered-item';
+                    
+                    let contentHTML = `<h2>${index + 1}. ${section.title} - ${section.titleArabic}</h2>`;
+                    
+                    section.content.forEach(item => {
+                        if (item.type === 'dual-text-row') {
+                            contentHTML += `
+                                <div class="dual-text-row">
+                                    <div class="english-side">${item.english}</div>
+                                    <div class="arrow-separator"></div>
+                                    <div class="arabic-side">${item.arabic}</div>
+                                </div>
+                            `;
+                        } else if (item.type === 'professor-explanation') {
+                            contentHTML += `
+                                <div class="professor-explanation">
+                                    <h4><i class="fas fa-user-graduate"></i> ${item.title}</h4>
+                                    <p>${item.content}</p>
+                                    <p>${item.contentArabic}</p>
+                                </div>
+                            `;
+                        } else if (item.type === 'practical-example') {
+                            contentHTML += `
+                                <div class="practical-example">
+                                    <h4><i class="fas fa-hospital"></i> ${item.title}</h4>
+                                    <p>${item.content}</p>
+                                    <p>${item.contentArabic}</p>
+                                </div>
+                            `;
+                        } else if (item.type === 'doctor-note') {
+                            contentHTML += `
+                                <div class="doctor-note">
+                                    <h4><i class="fas fa-user-md"></i> ${item.title}</h4>
+                                    <p>${item.content}</p>
+                                    <p>${item.contentArabic}</p>
+                                </div>
+                            `;
+                        }
+                    });
+                    
+                    numberedItem.innerHTML = contentHTML;
+                    container.appendChild(numberedItem);
+                });
+            }
+            
+            // Generate comparison content
+            function generateComparisons() {
+                const container = document.getElementById('comparisons');
+                container.innerHTML = '';
+                
+                comparisonContent.forEach((comparison, index) => {
+                    const numberedItem = document.createElement('div');
+                    numberedItem.className = 'numbered-item';
+                    
+                    let contentHTML = `<h2>${index + 1}. ${comparison.title} - ${comparison.titleArabic}</h2>`;
+                    
+                    contentHTML += `
+                        <div class="comparison-table-3col">
+                            <div class="comparison-header">
+                                <div>Aspect / البعد</div>
+                                <div>${comparison.title}</div>
+                                <div>${comparison.titleArabic}</div>
+                            </div>
+                    `;
+                    
+                    comparison.rows.forEach(row => {
+                        contentHTML += `
+                            <div class="comparison-row">
+                                <div class="col-aspect">${row.aspect}<br><em>${row.aspectArabic}</em></div>
+                                <div class="col-item1">${row.item1}<br><em>${row.item1Arabic}</em></div>
+                                <div class="col-item2">${row.item2}<br><em>${row.item2Arabic}</em></div>
+                            </div>
+                        `;
+                    });
+                    
+                    contentHTML += `</div>`;
+                    
+                    numberedItem.innerHTML = contentHTML;
+                    container.appendChild(numberedItem);
+                });
+            }
+            
+            // Generate important numbers content
+            function generateImportantNumbers() {
+                const container = document.getElementById('important-numbers');
+                container.innerHTML = '';
+                
+                numbersContent.forEach((number, index) => {
+                    const numberSlide = document.createElement('div');
+                    numberSlide.className = 'number-slide';
+                    
+                    numberSlide.innerHTML = `
+                        <div class="number-highlight">${number.number}</div>
+                        <h3 class="number-title">${number.title} - ${number.titleArabic}</h3>
+                        <p class="number-description">${number.description}</p>
+                        <p class="number-description">${number.descriptionArabic}</p>
+                        <div class="number-explanation">
+                            ${number.explanation.type === 'dual-text-row' ? `
+                                <div class="dual-text-row">
+                                    <div class="english-side">${number.explanation.english}</div>
+                                    <div class="arrow-separator"></div>
+                                    <div class="arabic-side">${number.explanation.arabic}</div>
+                                </div>
+                            ` : ''}
+                        </div>
+                    `;
+                    
+                    container.appendChild(numberSlide);
+                });
+            }
+            
+            // Generate final review content
+            function generateFinalReview() {
+                const container = document.getElementById('final-review');
+                container.innerHTML = '';
+                
+                finalReviewContent.forEach((review, index) => {
+                    const reviewSlide = document.createElement('div');
+                    reviewSlide.className = 'review-slide';
+                    
+                    reviewSlide.innerHTML = `
+                        <h3 class="review-title">${index + 1}. ${review.title} - ${review.titleArabic}</h3>
+                        <div class="review-content">
+                            <div class="review-english">${review.english}</div>
+                            <div class="review-arabic">${review.arabic}</div>
+                        </div>
+                        <div class="review-explanation">
+                            <h4><i class="fas fa-lightbulb"></i> Key Point / نقطة رئيسية</h4>
+                            <p>${review.explanation}</p>
+                            <p>${review.explanationArabic}</p>
+                        </div>
+                    `;
+                    
+                    container.appendChild(reviewSlide);
+                });
+            }
+            
+            // Generate quiz questions
+            function generateQuizQuestions() {
+                const container = document.getElementById('quiz-questions');
+                container.innerHTML = '';
+                
+                quizData.forEach((q, index) => {
+                    const questionCard = document.createElement('div');
+                    questionCard.className = 'question-card';
+                    
+                    // Add difficulty badge
+                    let difficultyClass = '';
+                    let difficultyText = '';
+                    
+                    if (q.difficulty === 'easy') {
+                        difficultyClass = 'difficulty-easy';
+                        difficultyText = 'EASY';
+                    } else if (q.difficulty === 'medium') {
+                        difficultyClass = 'difficulty-medium';
+                        difficultyText = 'MEDIUM';
+                    } else if (q.difficulty === 'hard') {
+                        difficultyClass = 'difficulty-hard';
+                        difficultyText = 'HARD';
+                    }
+                    
+                    questionCard.innerHTML = `
+                        <div class="question-difficulty ${difficultyClass}">${difficultyText}</div>
+                        <div class="question-header">
+                            <div class="question-text">${q.question}</div>
+                            <div class="question-number">${index + 1}</div>
+                        </div>
+                        <div class="options">
+                            ${q.options.map((option, i) => `
+                                <div class="option" data-question="${index}" data-option="${i}">
+                                    <div class="option-letter">${String.fromCharCode(65 + i)}</div>
+                                    <div class="option-text">${option}</div>
+                                </div>
+                            `).join('')}
+                        </div>
+                        <div class="explanation" id="quiz-explanation-${index}">
+                            <div class="dual-content">
+                                <div class="english-content">${q.explanation.english}</div>
+                                <div class="arabic-content">${q.explanation.arabic}</div>
+                            </div>
+                        </div>
+                    `;
+                    
+                    container.appendChild(questionCard);
+                });
+                
+                // Add event listeners to options
+                container.querySelectorAll('.option').forEach(opt => { 
+                    opt.addEventListener('click', function() { 
+                        selectQuizOption(parseInt(this.dataset.question), parseInt(this.dataset.option)); 
+                    }); 
+                });
+            }
+            
+            function selectQuizOption(questionIndex, optionIndex) {
+                const options = document.querySelectorAll(`#quiz-questions .question-card:nth-child(${questionIndex + 1}) .option`);
+                options.forEach(opt => opt.classList.remove('selected'));
+                options[optionIndex].classList.add('selected');
+                quizAnswers[questionIndex] = optionIndex;
+                updateQuizStats();
+            }
+            
+            function updateQuizStats() {
+                const answeredCount = quizAnswers.filter(a => a !== undefined).length;
+                document.getElementById('answered-count').textContent = answeredCount;
+                document.getElementById('remaining-count').textContent = quizData.length - answeredCount;
+            }
+            
+            function startQuizTimer() {
+                updateTimerDisplay('quiz-timer', quizTimeLeft);
+                quizTimerInterval = setInterval(() => { 
+                    quizTimeLeft--; 
+                    updateTimerDisplay('quiz-timer', quizTimeLeft); 
+                    if (quizTimeLeft <= 0) { 
+                        clearInterval(quizTimerInterval); 
+                        alert('Time is up! Submitting quiz.'); 
+                        submitQuiz(); 
+                    } 
+                }, 1000);
+            }
+            
+            function submitQuiz() {
+                clearInterval(quizTimerInterval);
+                let correct = 0;
+                
+                quizData.forEach((q, index) => {
+                    const options = document.querySelectorAll(`#quiz-questions .question-card:nth-child(${index + 1}) .option`);
+                    options.forEach(opt => opt.style.pointerEvents = 'none');
+                    
+                    if (quizAnswers[index] === q.correct) { 
+                        correct++; 
+                        options[quizAnswers[index]].classList.add('correct'); 
+                    } else { 
+                        if (quizAnswers[index] !== undefined) { 
+                            options[quizAnswers[index]].classList.add('wrong'); 
+                        } 
+                        options[q.correct].classList.add('correct'); 
+                    }
+                    
+                    document.getElementById(`quiz-explanation-${index}`).classList.add('show');
+                });
+                
+                showResults('quiz-results', correct, quizData.length - correct, quizData.length);
+            }
+            
+            // Generate words test questions
+            function generateWordsQuestions() {
+                const container = document.getElementById('words-questions');
+                container.innerHTML = '';
+                
+                wordsData.forEach((w, index) => {
+                    const questionCard = document.createElement('div');
+                    questionCard.className = 'words-question-card';
+                    
+                    questionCard.innerHTML = `
+                        <div class="question-header">
+                            <div class="question-number">${index + 1}</div>
+                        </div>
+                        <div class="word-display">${w.word}</div>
+                        <div class="options">
+                            ${w.options.map((option, i) => `
+                                <div class="words-option" data-words-question="${index}" data-option="${i}">
+                                    <div class="words-option-letter">${String.fromCharCode(65 + i)}</div>
+                                    <div class="option-text">${option}</div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    `;
+                    
+                    container.appendChild(questionCard);
+                });
+                
+                // Add event listeners to options
+                container.querySelectorAll('.words-option').forEach(opt => { 
+                    opt.addEventListener('click', function() { 
+                        selectWordsOption(parseInt(this.dataset.wordsQuestion), parseInt(this.dataset.option)); 
+                    }); 
+                });
+            }
+            
+            function selectWordsOption(questionIndex, optionIndex) {
+                const options = document.querySelectorAll(`#words-questions .words-question-card:nth-child(${questionIndex + 1}) .words-option`);
+                options.forEach(opt => opt.classList.remove('selected'));
+                options[optionIndex].classList.add('selected');
+                wordsAnswers[questionIndex] = optionIndex;
+                updateWordsStats();
+            }
+            
+            function updateWordsStats() {
+                const answeredCount = wordsAnswers.filter(a => a !== undefined).length;
+                document.getElementById('words-answered-count').textContent = answeredCount;
+                document.getElementById('words-remaining-count').textContent = wordsData.length - answeredCount;
+            }
+            
+            function startWordsTimer() {
+                updateTimerDisplay('words-timer', wordsTimeLeft);
+                wordsTimerInterval = setInterval(() => { 
+                    wordsTimeLeft--; 
+                    updateTimerDisplay('words-timer', wordsTimeLeft); 
+                    if (wordsTimeLeft <= 0) { 
+                        clearInterval(wordsTimerInterval); 
+                        alert('Time is up! Submitting test.'); 
+                        submitWordsTest(); 
+                    } 
+                }, 1000);
+            }
+            
+            function submitWordsTest() {
+                clearInterval(wordsTimerInterval);
+                let correct = 0;
+                
+                wordsData.forEach((w, index) => {
+                    const options = document.querySelectorAll(`#words-questions .words-question-card:nth-child(${index + 1}) .words-option`);
+                    options.forEach(opt => opt.style.pointerEvents = 'none');
+                    
+                    if (wordsAnswers[index] === w.correct) { 
+                        correct++; 
+                        options[wordsAnswers[index]].classList.add('correct'); 
+                    } else { 
+                        if (wordsAnswers[index] !== undefined) { 
+                            options[wordsAnswers[index]].classList.add('wrong'); 
+                        } 
+                        options[w.correct].classList.add('correct'); 
+                    }
+                });
+                
+                showResults('words-results', correct, wordsData.length - correct, wordsData.length);
+            }
+            
+            // Generate exam tricks content
+            function generateExamTricks() {
+                const container = document.getElementById('tricks-content');
+                container.innerHTML = '';
+                
+                examTricksContent.forEach((trick, index) => {
+                    const trickCard = document.createElement('div');
+                    trickCard.className = 'trick-card';
+                    
+                    trickCard.innerHTML = `
+                        <div class="trick-header">
+                            <div class="trick-icon"><i class="fas fa-lightbulb"></i></div>
+                            <div class="trick-title">${index + 1}. ${trick.title} - ${trick.titleArabic}</div>
+                        </div>
+                        <div class="trick-analysis">
+                            <div class="analysis-english">${trick.analysis.english}</div>
+                            <div class="analysis-arabic">${trick.analysis.arabic}</div>
+                        </div>
+                        <div class="practical-example">
+                            <h4><i class="fas fa-star"></i> Tip / نصيحة</h4>
+                            <p>${trick.tip}</p>
+                            <p>${trick.tipArabic}</p>
+                        </div>
+                    `;
+                    
+                    container.appendChild(trickCard);
+                });
+            }
+            
+            // Helper functions
+            function updateTimerDisplay(timerId, seconds) {
+                const minutes = Math.floor(seconds / 60);
+                const secs = seconds % 60;
+                document.getElementById(timerId).textContent = `${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+            }
+            
+            function showResults(elementId, correct, wrong, total) {
+                const score = Math.round((correct / total) * 100);
+                const reportDiv = document.getElementById(elementId);
+                reportDiv.innerHTML = `
+                    <div class="score-circle">${score}%</div>
+                    <div class="stats">
+                        <div class="stat-item">
+                            <div class="stat-number">${correct}</div>
+                            <div class="stat-label">Correct / صحيح</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">${wrong}</div>
+                            <div class="stat-label">Wrong / خطأ</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">${total}</div>
+                            <div class="stat-label">Total / الإجمالي</div>
+                        </div>
+                    </div>
+                `;
+                reportDiv.classList.add('show');
+                reportDiv.scrollIntoView({ behavior: 'smooth' });
+            }
+            
+            // Initialize the app
+            function initializeApp() {
+                updateFlashcard();
+                generateDetailedExplanation();
+                generateComparisons();
+                generateImportantNumbers();
+                generateFinalReview();
+                generateQuizQuestions();
+                generateWordsQuestions();
+                generateExamTricks();
+                updateQuizStats();
+                updateWordsStats();
+            }
+            
+            // Submit button event listeners
+            document.getElementById('submit-quiz').addEventListener('click', submitQuiz);
+            document.getElementById('submit-words').addEventListener('click', submitWordsTest);
+            
+            // Initialize the app when DOM is loaded
+            initializeApp();
+        });
+    </script>
+</body>
+</html>
